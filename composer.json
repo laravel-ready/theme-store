@@ -1,0 +1,57 @@
+{
+    "name": "laravel-ready/theme-store",
+    "description": "Theme store feature for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "keywords": [
+        "laravel",
+        "theme manager",
+        "theme-store"
+    ],
+    "authors": [
+        {
+            "name": "EgoistDeveloper",
+            "email": "epsilonelittr@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/laravel-ready/theme-store/issues",
+        "source": "https://github.com/laravel-ready/theme-store"
+    },
+    "require": {
+        "php": "^8.0.2",
+        "illuminate/support": "^9.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4",
+        "orchestra/testbench": "^7.0.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelReady\\ThemeStore\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelReady\\ThemeStore\\ThemeStoreServiceProvider"
+            ],
+            "aliases": {
+                "ThemeStore": "LaravelReady\\ThemeStore\\Facades\\ThemeStore"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
