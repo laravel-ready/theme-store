@@ -12,7 +12,7 @@ Route::name('theme-store.')->group(function () {
     // Web
     Route::name('web.')
         ->prefix(Config::get('theme-store.endpoints.web.prefix', 'theme-store'))
-        ->middleware(Config::get('theme-store.endpoints.web.middleware', ['web']))->group(function () {
+        ->middleware(Config::get('theme-store.endpoints.web.middleware', ['web', 'theme-store-public']))->group(function () {
             Route::get('/', [WebStoreController::class, 'index'])->name('index');
         });
 

@@ -21,7 +21,7 @@ return [
          */
         'web' => [
             'prefix' => 'theme-store',
-            'middleware' => ['web'],
+            'middleware' => ['web', 'theme-store-public'],
         ],
 
         /**
@@ -47,5 +47,28 @@ return [
             'prefix' => 'panel/theme-store',
             'middleware' => ['web', 'auth'],
         ],
-    ]
+    ],
+
+    /**
+     * Public store configs
+     */
+    'public_store' => [
+        /**
+         * Allow the theme store to be accessed by the public
+         * All visitors will be able to browse the store and can download themes
+         *
+         * If set to false, the theme store will not be accessible by the public
+         *
+         * Default: false
+         */
+        'allow_access' => false,
+
+        /**
+         * If "allow_access" is set to false, you can specify a 403 or 404 response
+         *
+         * Default: 404
+         */
+        'abort_status_code' => 403,
+    ],
+    
 ];

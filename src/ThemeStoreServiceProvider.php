@@ -2,15 +2,19 @@
 
 namespace LaravelReady\ThemeStore;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 use LaravelReady\ThemeStore\Services\ThemeStore;
+use LaravelReady\ThemeStore\Http\Middleware\PublicStoreMiddleware;
 
 final class ThemeStoreServiceProvider extends BaseServiceProvider
 {
-    public function boot(): void
+    public function boot(Router $router): void
     {
         $this->bootPublishes();
+
+        $this->loadMiddlewares($router);
 
         $this->loadRoutes();
 
@@ -55,5 +59,15 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
     private function loadRoutes(): void
     {
         $this->loadRoutesFrom(__DIR__ . '/../routes/theme-store.php');
+    }
+
+    /**
+     * Load ThemeManagerMiddleware
+     *
+     * @param Router $router
+     */
+    private function loadMiddlewares(Router $router): void
+    {
+        $router->aliasMiddleware('theme-store-public', PublicStoreMiddleware::class);
     }
 }
