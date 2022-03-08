@@ -18,6 +18,12 @@ Publish store migrations
 $ php artisan vendor:publish --tag=theme-store-migrations
 ```
 
+Publish store configs
+
+```bash
+$ php artisan vendor:publish --tag=theme-store-config
+```
+
 Apply migrations
 
 `php artisan migrate --path=/database/migrations/laravel-ready/theme-store`
