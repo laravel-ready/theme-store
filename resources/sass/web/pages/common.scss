@@ -1,0 +1,7 @@
+main {
+    @apply flex items-center justify-center my-20;
+
+    .store-card-container {
+        @apply flex flex-wrap items-center justify-center;
+    }
+}

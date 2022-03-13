@@ -24,6 +24,18 @@ Publish store configs
 $ php artisan vendor:publish --tag=theme-store-config
 ```
 
+Publish store assets
+
+```bash
+$ php artisan vendor:publish --tag=theme-store-assets
+```
+
+Publish store views
+
+```bash
+$ php artisan vendor:publish --tag=theme-store-views
+```
+
 Apply migrations
 
 `php artisan migrate --path=/database/migrations/laravel-ready/theme-store`

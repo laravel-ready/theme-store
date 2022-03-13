@@ -70,5 +70,9 @@ return [
          */
         'abort_status_code' => 403,
     ],
-    
+
+    /**
+     * UI assets path
+     */
+    'assets_path' => 'assets/store',
 ];

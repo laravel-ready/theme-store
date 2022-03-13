@@ -3,9 +3,10 @@
 namespace LaravelReady\ThemeStore;
 
 use Illuminate\Routing\Router;
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\Facades\Config;
 
 use LaravelReady\ThemeStore\Services\ThemeStore;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use LaravelReady\ThemeStore\Http\Middleware\PublicStoreMiddleware;
 
 final class ThemeStoreServiceProvider extends BaseServiceProvider
@@ -43,6 +44,18 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
         $this->publishes([
             __DIR__ . '/../database/migrations/' => database_path('migrations/laravel-ready/theme-store')
         ], 'theme-store-migrations');
+
+
+        $assetPath = Config::get('theme-store.assets_path', 'assets/store');
+
+        $this->publishes([
+            __DIR__ . '/../resources/public/' => public_path($assetPath)
+        ], 'theme-store-assets');
+
+
+        $this->publishes([
+            __DIR__ . '/../resources/views/' => base_path('resources/views/vendor/theme-store')
+        ], 'theme-store-views');
     }
 
     /**
