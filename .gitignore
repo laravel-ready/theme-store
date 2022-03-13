@@ -10,3 +10,5 @@ vendor/
 *.orig
 
 *.lock
+
+mix-manifest.json

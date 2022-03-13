@@ -9,14 +9,14 @@ use LaravelReady\ThemeStore\Http\Controllers\Web\StoreController as WebStoreCont
 use LaravelReady\ThemeStore\Http\Controllers\Panel\StoreController as PanelStoreController;
 
 Route::name('theme-store.')->group(function () {
-    // Web
+    // Web Store
     Route::name('web.')
         ->prefix(Config::get('theme-store.endpoints.web.prefix', 'theme-store'))
         ->middleware(Config::get('theme-store.endpoints.web.middleware', ['web', 'theme-store-public']))->group(function () {
             Route::get('/', [WebStoreController::class, 'index'])->name('index');
         });
 
-    // API
+    // API (public)
     Route::name('api.public.')
         ->prefix(Config::get('theme-store.endpoints.api_public.prefix', 'api/theme-store'))
         ->middleware(Config::get('theme-store.endpoints.api_public.middleware', ['api']))->group(function () {
