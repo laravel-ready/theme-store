@@ -14,11 +14,13 @@
     <!-- Roboto Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:200,500,700" rel="stylesheet">
 
-    {{-- WEb Store Styles --}}
+    {{-- Web Store Styles --}}
     <link rel="stylesheet" href="{{ asset('assets/store/web/css/store.min.css') }}"/>
 </head>
 
 <body>
+    @include('theme-store::web.components.common.navbar')
+
     <div id="app">
         @yield('content')
     </div>

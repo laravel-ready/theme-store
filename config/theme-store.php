@@ -75,4 +75,18 @@ return [
      * UI assets path
      */
     'assets_path' => 'assets/store',
+
+    /**
+     * Logo path for theme store
+     *
+     * If you provide a path to a logo, it must be outside of the "assets/store" directory
+     * because this folder overwrites on every publish the assets
+     *
+     * Example: "assets/images/logos/logo.png"
+     *
+     * Warning: Do not use public_path() or url() in this path
+     *
+     * Default: null
+     */
+    'logo_path' => null,
 ];

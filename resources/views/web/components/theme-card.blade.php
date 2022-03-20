@@ -44,6 +44,8 @@
                 EgoistDeveloper
             </a>
 
+            in
+
             <!-- Category -->
             <a class="category">
                 e-commerce

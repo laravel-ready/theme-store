@@ -27,7 +27,7 @@ $ php artisan vendor:publish --tag=theme-store-config
 Publish store assets
 
 ```bash
-$ php artisan vendor:publish --tag=theme-store-assets
+$ php artisan vendor:publish --tag=theme-store-assets --force
 ```
 
 Publish store views

@@ -22,7 +22,7 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'theme-store');
     }
 
-    public function register(): void
+    public function register()  : void
     {
         $this->registerConfigs();
 
