@@ -19,10 +19,12 @@
 </head>
 
 <body>
-    @include('theme-store::web.components.common.navbar')
-
     <div id="app">
+        @include('theme-store::web.components.common.navbar')
+
         @yield('content')
+
+        @include('theme-store::web.components.common.footer')
     </div>
 
     <!-- VueJS -->
