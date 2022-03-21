@@ -1,8 +1,7 @@
 // Navbar Component
 
 .navbar {
-    @apply flex justify-around py-4 bg-white/80
-        backdrop-blur-md shadow-md w-full;
+    @apply flex justify-around py-4 bg-white shadow-md w-full backdrop-blur-md bg-opacity-80;
 
     &.static {
         @apply fixed top-0 left-0 right-0 z-10;

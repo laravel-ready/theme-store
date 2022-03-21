@@ -1,0 +1,37 @@
+// Hero Component
+// Source: https://tailwindcomponents.com/component/free-tailwind-css-hero-component
+
+.hero {
+    @apply container mx-auto flex flex-col items-center py-12 sm:py-24 mt-28;
+
+    .intro {
+        @apply w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10;
+
+        .title {
+            @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+                xl:text-6xl text-center text-gray-800 font-black leading-7 md:leading-10;
+
+            span {
+                @apply text-orange-700;
+            }
+        }
+
+        .description {
+            @apply mt-5 sm:mt-10 lg:w-10/12 text-gray-600 font-normal
+                text-center text-sm sm:text-lg;
+        }
+    }
+
+    .links {
+        @apply flex justify-center items-center space-x-5 mt-10;
+
+        button, a {
+            @apply bg-transparent focus:outline-none rounded
+                transition duration-150 ease-in-out
+                hover:border-orange-200 hover:text-orange-50 hover:bg-orange-500
+                border border-gray-700 text-gray-700
+                lg:text-xl lg:font-bold
+                px-4 sm:px-10 py-2 sm:py-4 text-sm;
+        }
+    }
+}

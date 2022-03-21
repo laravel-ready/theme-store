@@ -1,5 +1,8 @@
+@import './../components/common/navbar.scss';
+@import './../components/common/hero.scss';
+
 main {
-    @apply flex items-center justify-center my-20;
+    @apply flex flex-col items-center justify-center my-20;
 
     .store-card-container {
         @apply flex flex-wrap items-center justify-center;

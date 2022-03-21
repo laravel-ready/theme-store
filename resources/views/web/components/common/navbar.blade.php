@@ -3,10 +3,12 @@
     <!-- Logo Container -->
     <div class="logo-container">
         <!-- Logo -->
-        <h3 class="logo">
-            <img src="{{ config('theme-store.logo_path')? asset(config('theme-store.logo_path')): asset('assets/store/logos/logo.png') }}"
-                alt="Store Logo">
-        </h3>
+        <a href="{{ url('/') }}">
+            <h3 class="logo">
+                <img src="{{ config('theme-store.logo_path')? asset(config('theme-store.logo_path')): asset('assets/store/logos/logo.png') }}"
+                    alt="Store Logo">
+            </h3>
+        </a>
     </div>
 
     <!-- Links Section -->
