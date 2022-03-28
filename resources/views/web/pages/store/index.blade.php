@@ -4,45 +4,49 @@
 
 @section('content')
     <!-- Section Header Container -->
-    <header class="hero">
-        <!-- Intro -->
-        <div class="intro">
-            <!-- Title -->
-            <h1 class="title">
-                The Freedom to Create the
+    <header>
+        <div class="hero">
+            <!-- Intro -->
+            <div class="intro">
+                <!-- Title -->
+                <h1 class="title">
+                    The Freedom to Create the
 
-                <span>
-                    Websites
-                </span>
+                    <span>
+                        Websites
+                    </span>
 
-                You Want
-            </h1>
+                    You Want
+                </h1>
 
-            <!-- Description -->
-            <p class="description">
-                A professional website drives sales.
-                Create a beautiful website to impress and engage new customers and establish your business online.
-                <b>{{ env('APP_NAME') }}</b> is the best place to find the best themes for your website.
-            </p>
-        </div>
+                <!-- Description -->
+                <p class="description">
+                    A professional website drives sales.
+                    Create a beautiful website to impress and engage new customers and establish your business online.
+                    <a href="{{ url('/') }}">{{ env('APP_NAME') }}</a> is the best place to find the best themes for your website.
+                </p>
+            </div>
 
-        <!-- Button Links Container -->
-        <div class="links">
-            <button>
-                Get Started
-            </button>
+            <!-- Button Links Container -->
+            <div class="links">
+                <button class="primary-button">
+                    Get Started
+                </button>
 
-            <button>
-                Live Demo
-            </button>
+                <button class="secondary-button">
+                    Learn More
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main>
+        @include('theme-store::web.components.common.search-bar')
+
         <!-- Store Main Container -->
         <div class="store-card-container">
-            @for ($i = 0; $i < 20; $i++)
+            @for ($i = 0; $i < 6; $i++)
                 @include('theme-store::web.components.theme-card')
             @endfor
         </div>

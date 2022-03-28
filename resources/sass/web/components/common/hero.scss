@@ -1,37 +1,60 @@
 // Hero Component
 // Source: https://tailwindcomponents.com/component/free-tailwind-css-hero-component
 
-.hero {
-    @apply container mx-auto flex flex-col items-center py-12 sm:py-24 mt-28;
+header {
+    @apply w-full bg-white;
 
-    .intro {
-        @apply w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10;
+    .hero {
+        @apply container flex flex-col items-center py-24 sm:pt-48 sm:pb-24 mx-auto;
 
-        .title {
-            @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl
-                xl:text-6xl text-center text-gray-800 font-black leading-7 md:leading-10;
+        .intro {
+            @apply w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col mb-5 sm:mb-10;
 
-            span {
-                @apply text-orange-700;
+            .title {
+                @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+                    xl:text-6xl text-center text-gray-800 font-black leading-7 md:leading-10
+                    text-transparent bg-clip-text bg-gradient-to-tl from-gray-600 to-gray-800;
+
+                span {
+                    @extend .gradient-text;
+                }
+            }
+
+            .description {
+                @apply mt-5 sm:mt-10 lg:w-10/12 text-gray-600 font-normal
+                    text-center text-sm sm:text-lg;
+
+                a {
+                    @apply font-bold;
+
+                    @extend .gradient-text;
+                }
             }
         }
 
-        .description {
-            @apply mt-5 sm:mt-10 lg:w-10/12 text-gray-600 font-normal
-                text-center text-sm sm:text-lg;
-        }
-    }
+        .links {
+            @apply flex justify-center items-center space-x-5 mt-10;
 
-    .links {
-        @apply flex justify-center items-center space-x-5 mt-10;
+            .link {
+                @apply bg-transparent focus:outline-none rounded
+                    transition duration-300 ease-in-out
+                    lg:text-xl shadow-md
+                    px-4 sm:px-10 py-2 sm:py-4 text-sm;
+            }
 
-        button, a {
-            @apply bg-transparent focus:outline-none rounded
-                transition duration-300 ease-in-out
-                border border-gray-700 text-gray-700
-                lg:text-xl lg:font-bold
-                px-4 sm:px-10 py-2 sm:py-4 text-sm
-                hover:-translate-y-1;
+            .primary-button {
+                @extend .link;
+
+                @apply bg-orange-400 hover:bg-orange-500 text-white
+                    hover:shadow-md;
+            }
+
+            .secondary-button {
+                @extend .link;
+
+                @apply bg-gray-700 hover:bg-gray-800 text-white
+                    hover:shadow-md;
+            }
         }
     }
 }
