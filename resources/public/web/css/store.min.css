@@ -728,16 +728,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-duration: 150ms;
+  transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero .links button:hover, .hero .links a:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(254 215 170 / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(255 247 237 / var(--tw-text-opacity));
+  --tw-translate-y: -0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .hero .links button:focus, .hero .links a:focus {
   outline: 2px solid transparent;
@@ -879,8 +875,49 @@ footer .copyright {
 }
 
 main {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+
+  main {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  main {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  main {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  main {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+
+  main {
+    max-width: 1536px;
+  }
+}
+
+main {
   margin-top: 5rem;
   margin-bottom: 5rem;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

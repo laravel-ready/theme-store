@@ -3,7 +3,7 @@
 @import './../components/common/footer.scss';
 
 main {
-    @apply flex flex-col items-center justify-center my-20;
+    @apply container flex flex-col items-center justify-center my-20 mx-auto;
 
     .store-card-container {
         @apply flex flex-wrap items-center justify-center;

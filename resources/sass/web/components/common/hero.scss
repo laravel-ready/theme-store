@@ -27,11 +27,11 @@
 
         button, a {
             @apply bg-transparent focus:outline-none rounded
-                transition duration-150 ease-in-out
-                hover:border-orange-200 hover:text-orange-50 hover:bg-orange-500
+                transition duration-300 ease-in-out
                 border border-gray-700 text-gray-700
                 lg:text-xl lg:font-bold
-                px-4 sm:px-10 py-2 sm:py-4 text-sm;
+                px-4 sm:px-10 py-2 sm:py-4 text-sm
+                hover:-translate-y-1;
         }
     }
 }
