@@ -110,5 +110,5 @@ return [
      *
      * Default: null
      */
-    'contact_url' => null
+    'contact_url' => null,
 ];

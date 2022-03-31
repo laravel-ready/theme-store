@@ -13,7 +13,7 @@
 
     <!-- Links Section -->
     <div class="links-container">
-        <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+        <a href="{{ route('web.home') }}" class="{{ request()->routeIs('web.home') ? 'active' : '' }}">
             Home
         </a>
 
@@ -31,7 +31,7 @@
 
 
         @if (config('theme-store.blog_url'))
-        <a href="{{ config('theme-store.blog_url') }}">
+        <a href="{{ config('theme-store.blog_url') }}" class="{{ url()->current() == config('theme-store.blog_url') ? 'active' : '' }}">
             Blog
         </a>
         @endif

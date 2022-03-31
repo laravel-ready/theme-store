@@ -3,7 +3,7 @@
     <div class="footer-content">
         <!-- Nav Links -->
         <nav class="nav-links">
-            <a href="{{ url('/') }}">
+            <a href="#">
                 About
             </a>
 
