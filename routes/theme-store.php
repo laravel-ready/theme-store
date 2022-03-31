@@ -13,7 +13,8 @@ Route::name('theme-store.')->group(function () {
     Route::name('web.')
         ->prefix(Config::get('theme-store.endpoints.web.prefix', 'theme-store'))
         ->middleware(Config::get('theme-store.endpoints.web.middleware', ['web', 'theme-store-public']))->group(function () {
-            Route::get('/', [WebStoreController::class, 'index'])->name('index');
+            Route::get('', [WebStoreController::class, 'index'])->name('index');
+            Route::get('search/{keyword}', [WebStoreController::class, 'search'])->name('search');
         });
 
     // API (public)
