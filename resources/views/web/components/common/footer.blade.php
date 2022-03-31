@@ -19,9 +19,11 @@
                 Pricing
             </a>
 
-            <a href="#">
+            @if (config('theme-store.blog_url'))
+            <a href="{{ config('theme-store.blog_url') }}">
                 Blog
             </a>
+            @endif
 
             <a href="#">
                 About Us

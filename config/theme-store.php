@@ -89,4 +89,26 @@ return [
      * Default: null
      */
     'logo_path' => null,
+
+    /**
+     * Blog page url for navbar, footer, etc
+     *
+     * If you provide a url, it will be used as the blog page url
+     *
+     * Example: "https://example.com/blog"
+     *
+     * Default: null
+     */
+    'blog_url' => null,
+
+    /**
+     * Contact page url for navbar, footer, etc
+     *
+     * If you provide a url, it will be used as the contact page url
+     *
+     * Example: "https://example.com/contact"
+     *
+     * Default: null
+     */
+    'contact_url' => null
 ];

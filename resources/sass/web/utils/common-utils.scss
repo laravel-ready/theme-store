@@ -1,3 +1,5 @@
+@import '../../common/utils/common.scss';
+
 .text-xxs {
     font-size: 0.7rem;
     line-height: 0.9rem;
@@ -5,8 +7,4 @@
 
 .rounded-xss {
     border-radius: 2px;
-}
-
-.gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-tl from-orange-600 to-yellow-200;
 }

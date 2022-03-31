@@ -1,0 +1,96 @@
+.error-container {
+    @apply flex flex-col;
+
+    .error {
+        @apply flex flex-col items-center;
+
+        .number {
+            @apply font-bold text-7xl;
+
+            @extend .gradient-text;
+        }
+
+        .text {
+            @apply font-bold lg:text-6xl md:text-5xl mt-10
+                    text-3xl xl:text-7xl;
+        }
+
+        .description {
+            @apply font-medium lg:text-2xl md:text-xl mt-8
+                text-gray-400 text-sm;
+        }
+    }
+
+    .continue {
+        @apply flex flex-col mt-48;
+
+        .title {
+            @apply font-bold text-gray-400 uppercase;
+        }
+
+        .nav-container {
+            @apply flex flex-col items-stretch mt-5;
+
+            .nav-item {
+                @apply border-t delay-100 duration-200 flex flex-row
+                    hover:cursor-pointer px-4 py-8 transition-all;
+
+                /* #region Group modifier: hover */
+
+                &:hover {
+                    .nav-icon {
+                        @apply bg-orange-200/60;
+
+                        svg {
+                            @apply fill-orange-800;
+                        }
+                    }
+
+                    .content {
+                        .title {
+                            @apply underline;
+                        }
+
+                        .sub-title {
+                            @apply text-gray-500;
+                        }
+                    }
+
+                    .chevron {
+                        @apply fill-gray-700;
+                    }
+                }
+
+                /* #endregion */
+
+                .nav-icon {
+                    @apply bg-orange-100 md:py-4 px-3 py-2 rounded-xl
+                        transition-all duration-200;
+
+                    svg {
+                        @apply md:text-3xl mx-auto text-2xl mt-1 fill-orange-700
+                            transition-all duration-200;
+                    }
+                }
+
+                .content {
+                    @apply flex flex-col grow pl-5 pt-2;
+
+                    .title {
+                        @apply text-gray-700 font-bold text-sm md:text-lg;
+                    }
+
+                    .sub-title {
+                        @apply delay-100 font-semibold lg:text-lg md:text-base
+                            text-gray-400 text-sm transition-all duration-200;
+                    }
+                }
+
+                .chevron {
+                    @apply delay-100 my-auto fill-gray-400
+                        transition-all duration-200;
+                }
+            }
+        }
+    }
+}

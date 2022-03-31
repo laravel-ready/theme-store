@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar static">
+<nav class="static navbar">
     <!-- Logo Container -->
     <div class="logo-container">
         <!-- Logo -->
@@ -29,9 +29,12 @@
             Pricing
         </a>
 
-        <a>
+
+        @if (config('theme-store.blog_url'))
+        <a href="{{ config('theme-store.blog_url') }}">
             Blog
         </a>
+        @endif
 
         <a>
             About Us

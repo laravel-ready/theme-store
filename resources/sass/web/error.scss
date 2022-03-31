@@ -1,0 +1,10 @@
+@tailwind base;
+
+@import "./../common/utils/common.scss";
+
+@import "./pages/error/404.scss";
+
+body {
+    @apply bg-white flex items-center justify-center
+        min-h-screen py-48;
+}
