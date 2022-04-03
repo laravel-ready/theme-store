@@ -44,7 +44,7 @@ return [
          * Endpoint and middleware for the theme store panel endpoints
          */
         'panel' => [
-            'prefix' => 'panel/theme-store',
+            'prefix' => 'theme-store/panel',
             'middleware' => ['web', 'auth'],
         ],
     ],
@@ -59,9 +59,9 @@ return [
          *
          * If set to false, the theme store will not be accessible by the public
          *
-         * Default: false
+         * Default: true
          */
-        'allow_access' => false,
+        'allow_access' => true,
 
         /**
          * If "allow_access" is set to false, you can specify a 403 or 404 response

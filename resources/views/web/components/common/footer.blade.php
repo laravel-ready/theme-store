@@ -7,7 +7,7 @@
                 About
             </a>
 
-            <a href="#">
+            <a href="{{ route('theme-store.web.index') }}">
                 Themes
             </a>
 

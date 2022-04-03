@@ -7,6 +7,7 @@ use LaravelReady\ThemeStore\Http\Controllers\Api\Public\StoreController as ApiPu
 use LaravelReady\ThemeStore\Http\Controllers\Api\Private\StoreController as ApiPrivateStoreController;
 use LaravelReady\ThemeStore\Http\Controllers\Web\StoreController as WebStoreController;
 use LaravelReady\ThemeStore\Http\Controllers\Panel\StoreController as PanelStoreController;
+use LaravelReady\ThemeStore\Http\Controllers\Panel\PanelController;
 
 Route::name('theme-store.')->group(function () {
     // Web Store
@@ -33,8 +34,8 @@ Route::name('theme-store.')->group(function () {
 
     // Panel
     Route::name('panel.')
-        ->prefix(Config::get('theme-store.endpoints.panel.prefix', 'panel/theme-store'))
+        ->prefix(Config::get('theme-store.endpoints.panel.prefix', 'theme-store/panel'))
         ->middleware(Config::get('theme-store.endpoints.panel.middleware', ['web', 'auth']))->group(function () {
-            Route::resource('', PanelStoreController::class)->parameters(['' => 'id']);
+            Route::get('', [PanelController::class, 'index']);
         });
 });

@@ -1,26 +1,41 @@
-require('laravel-mix-purgecss');
+require("laravel-mix-purgecss");
 
-const mix = require('laravel-mix');
-const tailwindcss = require('tailwindcss');
+const mix = require("laravel-mix");
+const tailwindcss = require("tailwindcss");
 const fs = require('fs');
-const path = require("path");
+const path = require('path');
 
-var themeFolder = '';
+const publicWebAssetsFolder = "public/web";
 
-const publicJsFolder = 'public/js';
-
-// mix.js('resources/js/app.js', publicJsFolder).then(() => {
-//     mix.minify(`${publicJsFolder}/app.js`, `${publicJsFolder}/app.min.js`);
-// });
-
-
-//#region SASS Building
-
-mix.sass(`./sass/web/store.scss`, 'public/web/css/store.min.css')
-mix.sass(`./sass/web/error.scss`, 'public/web/css/error-style.min.css')
-.options({
+mix.sass(`./sass/web/store.scss`, `${publicWebAssetsFolder}/css/store.min.css`);
+mix.sass(`./sass/web/error.scss`, `${publicWebAssetsFolder}/css/error-style.min.css`).options({
     processCssUrls: false,
-    postCss: [ tailwindcss('./tailwind.config.js') ],
+    postCss: [tailwindcss("./tailwind.config.js")],
 });
 
-//#endregion
+const publicPanelAssetsFolder = "public/panel";
+
+mix.copyDirectory("apps/panel/dist", `${publicPanelAssetsFolder}`);
+
+mix.css(`${publicPanelAssetsFolder}/css/app.css`, `${publicPanelAssetsFolder}/css/app.min.css`)
+.then(stats => {
+    // replace font apths for panel public folder structure
+    fs.readFile(path.resolve(__dirname, `${publicPanelAssetsFolder}/css/app.min.css`), 'utf8' , (readError, data) => {
+        if (readError) {
+            console.error("\x1b[31mError: \x1b[0m" + readError);
+            return;
+        }
+
+        const result = data.replace(new RegExp(/url\(\/fonts\/nucleo-icons/, 'g'), 'url(../fonts/nucleo-icons')
+        .replace(new RegExp(/url\(\/fonts\/fa\-/, 'g'), 'url(../fonts/fa-');
+
+        fs.writeFile(path.resolve(__dirname, `${publicPanelAssetsFolder}/css/app.min.css`), result, writeError => {
+            if (writeError) {
+                console.error("\x1b[31mError: \x1b[0m" + writeError);
+                return;
+            }
+
+            console.log("Relative theme directory references replaced to full urls!");
+        });
+    })
+});
