@@ -14,7 +14,7 @@
     <!-- Roboto Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:200,500,700" rel="stylesheet">
 
-    {{-- PAnel Styles --}}
+    {{-- Panel Styles --}}
     <link rel="stylesheet" href="{{ asset('assets/store/web/css/store.min.css') }}"/>
 
     <link href="{{ asset('assets/store/panel/css/chunk-vendors.css') }}" rel="stylesheet">
@@ -40,6 +40,9 @@
 
     {{-- App Content --}}
     @yield('content')
+
+    {{-- Scripts --}}
+    @yield('scripts')
 </body>
 
 </html>

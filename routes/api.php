@@ -13,17 +13,19 @@ Route::name('theme-store.api.')
             Route::post('login', [AuthController::class, 'login'])->name('login');
         });
 
-        // public routes
+        // public routes for web ui
         Route::name('public.')
+            ->prefix('v1')
             ->middleware(Config::get('theme-store.endpoints.api.public_middleware', ['api']))
-            ->group(function () {
-            });
+            ->group(function () { });
 
-        // private routes
+        // private routes for panel
         Route::name('private.')
-            ->prefix('private')
+            ->prefix('private/v1')
             ->middleware(Config::get('theme-store.endpoints.api.private_middleware', ['api', 'auth:sanctum']))
             ->group(function () {
+                // axios startpoint route
+                Route::name('startpoint')->get('', '');
 
                 Route::name('auth.')->prefix('auth')->group(function () {
                     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
