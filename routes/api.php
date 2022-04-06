@@ -1,23 +1,27 @@
 <?php
 
+use App\Http\Middleware\VerifyCsrfToken;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 
 use LaravelReady\ThemeStore\Http\Controllers\Panel\Category\CategoryController;
-use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Auth\AuthController;
+use LaravelReady\ThemeStore\Http\Controllers\Api\Auth\AuthController;
 
 Route::name('theme-store.api.')
     ->prefix(Config::get('theme-store.endpoints.api.prefix', 'api/theme-store'))
     ->group(function () {
-        Route::name('auth.')->prefix('auth')->group(function () {
-            Route::post('login', [AuthController::class, 'login'])->name('login');
-        });
-
         // public routes for web ui
         Route::name('public.')
             ->prefix('v1')
             ->middleware(Config::get('theme-store.endpoints.api.public_middleware', ['api']))
-            ->group(function () { });
+            ->group(function () {
+                Route::name('auth.')->prefix('auth')
+                ->withoutMiddleware([VerifyCsrfToken::class])
+                ->group(function () {
+                    Route::post('login', [AuthController::class, 'login'])->name('login');
+                });
+            });
 
         // private routes for panel
         Route::name('private.')

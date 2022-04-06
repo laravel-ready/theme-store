@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelReady\ThemeStore\Http\Controllers\Api\Private\Auth;
+namespace LaravelReady\ThemeStore\Http\Controllers\Api\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ class AuthController extends Controller
 
 
         // clean previous tokens on this client
-        $this->logoutOnThisDevice($clientUserAgent);
+        $this->logoutOnThisDevice($user, $clientUserAgent);
 
         return [
             'user' => $user,
@@ -68,7 +68,7 @@ class AuthController extends Controller
     public function logout(Request $request){
         $clientUserAgent = $request->header('User-Agent');
 
-        $this->logoutOnThisDevice($clientUserAgent);
+        $this->logoutOnThisDevice(Auth::use(), $clientUserAgent);
 
         return [
             'success' => true,
@@ -84,7 +84,7 @@ class AuthController extends Controller
         return Auth::user();
     }
 
-    private function logoutOnThisDevice(string $clientUserAgent): bool{
-        return Auth::user()->tokens()->where('name', $clientUserAgent)->delete();
+    private function logoutOnThisDevice($user, string $clientUserAgent): bool{
+        return $user->tokens()->where('name', $clientUserAgent)->delete();
     }
 }
