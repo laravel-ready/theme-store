@@ -15,31 +15,30 @@ This dynamic theme manager brings theme support to Laravel projects. Theme Manag
 Publish store migrations
 
 ```bash
-$ php artisan vendor:publish --tag=theme-store-migrations
-```
-
-Publish store configs
-
-```bash
-$ php artisan vendor:publish --tag=theme-store-config
-```
-
-Publish store assets
-
-```bash
-$ php artisan vendor:publish --tag=theme-store-assets --force
-```
-
-Publish store views
-
-```bash
-$ php artisan vendor:publish --tag=theme-store-views
+php artisan vendor:publish --tag=theme-store-migrations
 ```
 
 Apply migrations
 
 `php artisan migrate --path=/database/migrations/laravel-ready/theme-store`
 
+Publish store configs
+
+```bash
+php artisan vendor:publish --tag=theme-store-config
+```
+
+Publish store assets
+
+```bash
+php artisan vendor:publish --tag=theme-store-assets
+```
+
+Publish store views
+
+```bash
+php artisan vendor:publish --tag=theme-store-views
+```
 
 [badge_downloads]:      https://img.shields.io/packagist/dt/laravel-ready/theme-store.svg?style=flat-square
 
