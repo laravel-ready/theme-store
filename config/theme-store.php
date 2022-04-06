@@ -3,6 +3,11 @@
 return [
 
     /**
+     * Default user model to use for authentication etc.
+     */
+    'user_model' => \App\Models\User::class,
+
+    /**
      * This prefix will be used for all tables created by the theme store
      *
      * Table name prefixes are used to prevent naming conflicts when using multiple stores
@@ -25,27 +30,21 @@ return [
         ],
 
         /**
-         * Endpoint and middleware for the theme store API public endpoints
-         */
-        'api_public' => [
-            'prefix' => 'api/theme-store',
-            'middleware' => ['api'],
-        ],
-
-        /**
-         * Endpoint and middleware for the theme store API private endpoints
-         */
-        'api_private' => [
-            'prefix' => 'api/private/theme-store',
-            'middleware' => ['api'],
-        ],
-
-        /**
          * Endpoint and middleware for the theme store panel endpoints
          */
         'panel' => [
             'prefix' => 'theme-store/panel',
             'middleware' => ['web', 'auth'],
+        ],
+
+
+        /**
+         * Endpoint and middleware for the theme store API public and private endpoints
+         */
+        'api' => [
+            'prefix' => 'api/theme-store',
+            'public_middleware' => ['api'],
+            'private_middleware' => ['api', 'auth:sanctum'],
         ],
     ],
 
