@@ -71,7 +71,9 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
      */
     private function loadRoutes(): void
     {
-        $this->loadRoutesFrom(__DIR__ . '/../routes/theme-store.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/panel.php');
     }
 
     /**
