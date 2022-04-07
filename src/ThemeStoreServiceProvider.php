@@ -22,9 +22,11 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'theme-store');
     }
 
-    public function register()  : void
+    public function register(): void
     {
         $this->registerConfigs();
+
+        $this->registerDisks();
 
         // register theme store service
         $this->app->singleton('theme-store', function () {
@@ -64,6 +66,19 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
     private function registerConfigs(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/theme-store.php', 'theme-store');
+    }
+
+    /**
+     * Add package specific disks for image upload
+     */
+    private function registerDisks()
+    {
+        Config::set("filesystems.disks.theme_store", [
+            'driver' => 'local',
+            'root' => storage_path('app/public/theme-store/uploads'),
+            'url' => env('APP_URL') . '/storage/theme-store/uploads',
+            'visibility' => 'public',
+        ]);
     }
 
     /**
