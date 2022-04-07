@@ -8,6 +8,6 @@
 
 @section('scripts')
     <script>
-        window.themeStorePrivateApi = '{{ route('theme-store.api.private.startpoint') }}';
+        window.themeStoreApiUrl = '{{ url('/') }}';
     </script>
 @endsection
