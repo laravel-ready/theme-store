@@ -5,13 +5,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTsThemeAuthorsTable extends Migration
+class CreateTsReleasesTable extends Migration
 {
     public function __construct()
     {
         $this->prefix = Config::get('theme-store.default_table_prefix', 'ts_');
 
-        $this->table = "{$this->prefix}_authors";
+        $this->table = "{$this->prefix}_releases";
     }
 
     /**
@@ -24,14 +24,15 @@ class CreateTsThemeAuthorsTable extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('name', 50);
-            $table->string('slug', 50);
-            $table->string('contact', 50);
+            $table->foreignId('theme_id')
+                ->constrained("{$this->prefix}_themes")
+                ->onDelete('cascade');
+
+            $table->text('notes');
+            $table->string('version', 20);
 
             $table->softDeletes();
             $table->timestamps();
-
-            $table->unique(['name', 'contact']);
         });
     }
 
@@ -43,6 +44,8 @@ class CreateTsThemeAuthorsTable extends Migration
     public function down()
     {
         Schema::table($this->table, function (Blueprint $table) {
+            $table->dropConstrainedForeignId('theme_id');
+
             $table->dropIfExists();
         });
     }
