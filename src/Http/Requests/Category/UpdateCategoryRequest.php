@@ -24,8 +24,9 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:1|max:50',
-            'description' => 'required|string',
+            'name' => 'string|min:1|max:50',
+            'description' => 'string|min:1|max:500',
+            'image' => 'nullable|boolean',
         ];
     }
 }

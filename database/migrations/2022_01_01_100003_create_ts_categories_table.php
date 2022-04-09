@@ -28,6 +28,7 @@ class CreateTsThemeCategoryTable extends Migration
             $table->string('slug', 50);
             $table->text('description', 500)->nullable();
             $table->string('image', 150)->nullable();
+            $table->boolean('featured')->default(false);
 
             $table->softDeletes();
             $table->timestamps();

@@ -36,7 +36,10 @@ Route::name('theme-store.api.')
                     Route::get('me', [AuthController::class, 'me'])->name('me');
                 });
 
-                Route::resource('category', CategoryController::class);
-                Route::post('category/{category}/upload', [CategoryController::class, 'upload'])->name('category.upload');
+
+                Route::prefix('category')->name('category.')->group(function () {
+                    Route::resource('', CategoryController::class)->parameters(['' => 'category']);
+                    Route::post('{category}/upload', [CategoryController::class, 'upload'])->name('upload');
+                });
             });
     });

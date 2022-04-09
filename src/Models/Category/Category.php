@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Category extends Model
 {
@@ -37,10 +36,16 @@ class Category extends Model
         'slug',
         'description',
         'image',
+        'featured',
     ];
 
     public function getImageAttribute($value)
     {
         return $value ? url("storage/theme-store/uploads/{$value}") : null;
+    }
+
+    public function getFeaturedAttribute($value)
+    {
+        return $value == 1;
     }
 }

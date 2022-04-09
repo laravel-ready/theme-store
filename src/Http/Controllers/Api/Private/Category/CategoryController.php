@@ -2,11 +2,8 @@
 
 namespace LaravelReady\ThemeStore\Http\Controllers\Api\Private\Category;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use LaravelReady\ThemeStore\Models\Category\Category;
 use LaravelReady\ThemeStore\Http\Controllers\Controller;
