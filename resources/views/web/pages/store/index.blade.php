@@ -47,8 +47,10 @@
         @include(
             'theme-store::web.components.common.section-title-bar',
             [
+                // 'topLine' => true,
+                'bottomLine' => true,
                 'title' => 'Featured Categories',
-                'message' => 'the technologies we use',
+                // 'message' => 'the technologies we use',
             ]
         )
 
