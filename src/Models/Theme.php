@@ -50,8 +50,6 @@ class Theme extends Model
 
     public function releases(): HasMany
     {
-        $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
-
         return $this->hasMany(Release::class, 'theme_id');
     }
 }

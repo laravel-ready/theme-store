@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use LaravelReady\ThemeStore\Models\Theme;
 
+use LaravelReady\ThemeStore\Models\Category\Category;
 use LaravelReady\ThemeStore\Http\Controllers\Controller;
 
 class StoreController extends Controller
@@ -17,7 +18,29 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {
-        return view('theme-store::web.pages.store.index');
+        $data = [];
+
+        $data['featuredCategories'] = Category::select('name', 'slug', 'image')
+            ->orderBy('created_at', 'DESC')
+            ->where('featured', true)
+            ->limit(6)->get()
+            ->chunk(3)
+            ->map(function ($items) {
+                return $items->values()->all();
+            });
+
+        $data['featuredCategories'] = Category::select('name', 'slug', 'image')
+            ->orderBy('created_at', 'DESC')
+            ->where('featured', true)
+            ->limit(6)->get()
+            ->chunk(3)
+            ->map(fn ($items) => $items->values()->all());
+
+        $data['latestCategories'] = Category::select('name', 'slug')
+            ->orderBy('created_at', 'DESC')
+            ->limit(10)->get();
+
+        return view('theme-store::web.pages.store.index', $data);
     }
 
     /**

@@ -42,6 +42,6 @@ class Author extends Model
 
         return $this->belongsToMany(Theme::class);
 
-        return $this->belongsToMany(Theme::class, "{$prefix}_themes_authors", 'theme_id', 'author_id');
+        // return $this->belongsToMany(Theme::class, "{$prefix}_themes_authors", 'theme_id', 'author_id');
     }
 }

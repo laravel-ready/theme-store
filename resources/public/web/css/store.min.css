@@ -1376,7 +1376,7 @@ body main .store-card-container {
   padding-top: 1px;
 }
 
-.card-item, .categories-preview .category-cards .cards-container .right-col .card-item-3, .categories-preview .category-cards .cards-container .right-col .card-item-2, .categories-preview .category-cards .cards-container .right-col .card-item-1, .categories-preview .category-cards .cards-container .left-card .card-item-3, .categories-preview .category-cards .cards-container .left-card .card-item-2, .categories-preview .category-cards .cards-container .left-card .card-item-1 {
+.card-item, .categories-preview .category-cards .cards-container .right-collection .card-item-3, .categories-preview .category-cards .cards-container .right-collection .card-item-2, .categories-preview .category-cards .cards-container .right-collection .card-item-1, .categories-preview .category-cards .cards-container .left-collection .card-item-3, .categories-preview .category-cards .cards-container .left-collection .card-item-2, .categories-preview .category-cards .cards-container .left-collection .card-item-1 {
   border-radius: 0.5rem;
   padding: 2rem;
   text-align: center;
@@ -1384,7 +1384,7 @@ body main .store-card-container {
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-.card-item img, .categories-preview .category-cards .cards-container .right-col .card-item-3 img, .categories-preview .category-cards .cards-container .right-col .card-item-2 img, .categories-preview .category-cards .cards-container .right-col .card-item-1 img, .categories-preview .category-cards .cards-container .left-card .card-item-3 img, .categories-preview .category-cards .cards-container .left-card .card-item-2 img, .categories-preview .category-cards .cards-container .left-card .card-item-1 img {
+.card-item img, .categories-preview .category-cards .cards-container .right-collection .card-item-3 img, .categories-preview .category-cards .cards-container .right-collection .card-item-2 img, .categories-preview .category-cards .cards-container .right-collection .card-item-1 img, .categories-preview .category-cards .cards-container .left-collection .card-item-3 img, .categories-preview .category-cards .cards-container .left-collection .card-item-2 img, .categories-preview .category-cards .cards-container .left-collection .card-item-1 img {
   margin-left: auto;
   margin-right: auto;
   height: 5rem;
@@ -1393,7 +1393,7 @@ body main .store-card-container {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.card-item p, .categories-preview .category-cards .cards-container .right-col .card-item-3 p, .categories-preview .category-cards .cards-container .right-col .card-item-2 p, .categories-preview .category-cards .cards-container .right-col .card-item-1 p, .categories-preview .category-cards .cards-container .left-card .card-item-3 p, .categories-preview .category-cards .cards-container .left-card .card-item-2 p, .categories-preview .category-cards .cards-container .left-card .card-item-1 p {
+.card-item p, .categories-preview .category-cards .cards-container .right-collection .card-item-3 p, .categories-preview .category-cards .cards-container .right-collection .card-item-2 p, .categories-preview .category-cards .cards-container .right-collection .card-item-1 p, .categories-preview .category-cards .cards-container .left-collection .card-item-3 p, .categories-preview .category-cards .cards-container .left-collection .card-item-2 p, .categories-preview .category-cards .cards-container .left-collection .card-item-1 p {
   margin-top: 1rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1407,9 +1407,59 @@ body main .store-card-container {
   transition-duration: 300ms;
   transition-timing-function: linear;
 }
-.card-item:hover p, .categories-preview .category-cards .cards-container .right-col .card-item-3:hover p, .categories-preview .category-cards .cards-container .right-col .card-item-2:hover p, .categories-preview .category-cards .cards-container .right-col .card-item-1:hover p, .categories-preview .category-cards .cards-container .left-card .card-item-3:hover p, .categories-preview .category-cards .cards-container .left-card .card-item-2:hover p, .categories-preview .category-cards .cards-container .left-card .card-item-1:hover p {
+.card-item:hover p, .categories-preview .category-cards .cards-container .right-collection .card-item-3:hover p, .categories-preview .category-cards .cards-container .right-collection .card-item-2:hover p, .categories-preview .category-cards .cards-container .right-collection .card-item-1:hover p, .categories-preview .category-cards .cards-container .left-collection .card-item-3:hover p, .categories-preview .category-cards .cards-container .left-collection .card-item-2:hover p, .categories-preview .category-cards .cards-container .left-collection .card-item-1:hover p {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+}
+.section-title-bar-container .title-bar .card-item:hover p, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-3:hover p, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-2:hover p, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-1:hover p, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-3:hover p, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-2:hover p, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-1:hover p {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.section-title-bar-container .title-bar .card-item:hover p .line-1, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-3:hover p .line-1, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-2:hover p .line-1, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-1:hover p .line-1, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-3:hover p .line-1, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-2:hover p .line-1, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-1:hover p .line-1 {
+  margin-left: 0.25rem;
+  display: inline-block;
+  height: 0.25rem;
+  width: 0.25rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+.section-title-bar-container .title-bar .card-item:hover p .line-2, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-3:hover p .line-2, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-2:hover p .line-2, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-1:hover p .line-2, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-3:hover p .line-2, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-2:hover p .line-2, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-1:hover p .line-2 {
+  margin-left: 0.25rem;
+  display: inline-block;
+  height: 0.25rem;
+  width: 0.75rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+.section-title-bar-container .title-bar .card-item:hover p .line-3, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-3:hover p .line-3, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-2:hover p .line-3, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-1:hover p .line-3, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-3:hover p .line-3, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-2:hover p .line-3, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-1:hover p .line-3 {
+  display: inline-block;
+  height: 0.25rem;
+  width: 10rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+.section-title-bar-container .title-bar .card-item:hover p .line-4, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-3:hover p .line-4, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-2:hover p .line-4, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-1:hover p .line-4, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-3:hover p .line-4, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-2:hover p .line-4, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-1:hover p .line-4 {
+  margin-left: 0.25rem;
+  display: inline-block;
+  height: 0.25rem;
+  width: 0.75rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+.section-title-bar-container .title-bar .card-item:hover p .line-5, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-3:hover p .line-5, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-2:hover p .line-5, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .right-collection .card-item-1:hover p .line-5, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-3:hover p .line-5, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-2:hover p .line-5, .section-title-bar-container .title-bar .categories-preview .category-cards .cards-container .left-collection .card-item-1:hover p .line-5 {
+  margin-left: 0.25rem;
+  display: inline-block;
+  height: 0.25rem;
+  width: 0.25rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
 .categories-preview {
@@ -1438,7 +1488,7 @@ body main .store-card-container {
   flex-wrap: wrap;
   justify-content: center;
 }
-.categories-preview .category-cards .cards-container .left-card {
+.categories-preview .category-cards .cards-container .left-collection {
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 100%;
@@ -1447,31 +1497,31 @@ body main .store-card-container {
 }
 @media (min-width: 1024px) {
 
-  .categories-preview .category-cards .cards-container .left-card {
+  .categories-preview .category-cards .cards-container .left-collection {
     width: 50%;
   }
 }
-.categories-preview .category-cards .cards-container .left-card .card-item-1 {
+.categories-preview .category-cards .cards-container .left-collection .card-item-1 {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
   --tw-gradient-from: #fb7185;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(251 113 133 / 0));
   --tw-gradient-to: #be123c;
 }
-.categories-preview .category-cards .cards-container .left-card .card-item-2 {
+.categories-preview .category-cards .cards-container .left-collection .card-item-2 {
   margin-top: 2rem;
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
   --tw-gradient-from: #22d3ee;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(34 211 238 / 0));
   --tw-gradient-to: #0891b2;
 }
-.categories-preview .category-cards .cards-container .left-card .card-item-3 {
+.categories-preview .category-cards .cards-container .left-collection .card-item-3 {
   margin-top: 2rem;
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
   --tw-gradient-from: #6b7280;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(107 114 128 / 0));
   --tw-gradient-to: #1f2937;
 }
-.categories-preview .category-cards .cards-container .right-col {
+.categories-preview .category-cards .cards-container .right-collection {
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 100%;
@@ -1480,28 +1530,28 @@ body main .store-card-container {
 }
 @media (min-width: 1024px) {
 
-  .categories-preview .category-cards .cards-container .right-col {
+  .categories-preview .category-cards .cards-container .right-collection {
     margin-top: 4rem;
   }
 
-  .categories-preview .category-cards .cards-container .right-col {
+  .categories-preview .category-cards .cards-container .right-collection {
     width: 50%;
   }
 }
-.categories-preview .category-cards .cards-container .right-col .card-item-1 {
+.categories-preview .category-cards .cards-container .right-collection .card-item-1 {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
   --tw-gradient-from: #facc15;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(250 204 21 / 0));
   --tw-gradient-to: #ca8a04;
 }
-.categories-preview .category-cards .cards-container .right-col .card-item-2 {
+.categories-preview .category-cards .cards-container .right-collection .card-item-2 {
   margin-top: 2rem;
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
   --tw-gradient-from: #f87171;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(248 113 113 / 0));
   --tw-gradient-to: #b91c1c;
 }
-.categories-preview .category-cards .cards-container .right-col .card-item-3 {
+.categories-preview .category-cards .cards-container .right-collection .card-item-3 {
   margin-top: 2rem;
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
   --tw-gradient-from: #34d399;
@@ -1626,4 +1676,80 @@ body main .store-card-container {
 }
 .categories-preview .details-column .view-all:hover svg {
   fill: #ea580c;
+}
+
+.section-title-bar-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 72rem;
+}
+.section-title-bar-container .title-bar {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 36rem;
+  text-align: center;
+}
+.section-title-bar-container .title-bar .title {
+  margin-bottom: 1.25rem;
+  font-size: 3.75rem;
+  line-height: 1;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+@media (min-width: 768px) {
+
+  .section-title-bar-container .title-bar .title {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+.section-title-bar-container .title-bar .short-message {
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 300;
+}
+.section-title-bar-container .title-bar .underline {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.section-title-bar-container .title-bar .underline.line-orange .line {
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 146 60 / var(--tw-bg-opacity));
+}
+.section-title-bar-container .title-bar .underline .line.line-1 {
+  margin-left: 0.25rem;
+  display: inline-block;
+  height: 0.25rem;
+  width: 0.25rem;
+  border-radius: 9999px;
+}
+.section-title-bar-container .title-bar .underline .line.line-2 {
+  margin-left: 0.25rem;
+  display: inline-block;
+  height: 0.25rem;
+  width: 0.75rem;
+  border-radius: 9999px;
+}
+.section-title-bar-container .title-bar .underline .line.line-3 {
+  display: inline-block;
+  height: 0.25rem;
+  width: 10rem;
+  border-radius: 9999px;
+}
+.section-title-bar-container .title-bar .underline .line.line-4 {
+  margin-left: 0.25rem;
+  display: inline-block;
+  height: 0.25rem;
+  width: 0.75rem;
+  border-radius: 9999px;
+}
+.section-title-bar-container .title-bar .underline .line.line-5 {
+  margin-left: 0.25rem;
+  display: inline-block;
+  height: 0.25rem;
+  width: 0.25rem;
+  border-radius: 9999px;
 }
