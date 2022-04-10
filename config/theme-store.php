@@ -110,4 +110,14 @@ return [
      * Default: null
      */
     'contact_url' => null,
+
+    /**
+     * Cache configs
+     */
+    'cache' => [
+        'web' => [
+            'enabled' => true,
+            'lifetime' => 60,
+        ],
+    ]
 ];
