@@ -23,8 +23,16 @@ class CategoryController extends Controller
         $categories = Category::select('name', 'slug', 'image', 'description')
             ->orderBy('featured', 'DESC')
             ->orderBy('created_at', 'DESC')
-            ->paginate();
+            ->paginate(12);
 
-        return view('theme-store::web.pages.categories.index', compact('categories'));
+        $categoriesChunk = $categories->chunk(4)
+            ->map(function ($items) {
+                return $items->values()->all();
+            });
+
+        return view('theme-store::web.pages.categories.index', compact(
+            'categories',
+            'categoriesChunk'
+        ));
     }
 }
