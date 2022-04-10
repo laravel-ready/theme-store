@@ -2,6 +2,11 @@
 
 @section('title', 'Theme Store')
 
+@push('styles')
+    {{-- Landing Styles --}}
+    <link rel="stylesheet" href="{{ asset('assets/store/web/css/landing.min.css') }}" />
+@endpush
+
 @section('content')
     <!-- Section Header Container -->
     <header>

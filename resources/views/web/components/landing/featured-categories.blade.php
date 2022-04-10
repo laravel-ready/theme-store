@@ -11,8 +11,9 @@
                         @foreach ($featuredCategories[$i] as $key => $item)
                             <!-- Card Item -->
                             <a href="{{ route('theme-store.web.category.details', $item->slug) }}">
-                                <div class="card-item-{{ $key + 1 }}">
-                                    <img alt="{{ $item->name }} Logo" src="{{ $item->image }}" />
+                                {{-- <div class="card-item-{{ $key + 1 }}"> --}}
+                                <div class="card-item-default">
+                                    <img src="{{ $item->image }}" alt="{{ $item->name }} Logo" />
 
                                     <p>
                                         {{ $item->name }}

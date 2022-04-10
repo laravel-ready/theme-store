@@ -7,18 +7,6 @@ const path = require("path");
 
 const publicWebAssetsFolder = "public/web";
 
-// mix.sass(`./sass/web/store.scss`, `${publicWebAssetsFolder}/css/store.min.css`);
-// mix.sass(`./sass/web/error.scss`, `${publicWebAssetsFolder}/css/error-style.min.css`).options({
-//     processCssUrls: false,
-//     postCss: [tailwindcss("./tailwind.config.js")],
-// });
-
-// mix.sass(`./apps/web/sass/store.scss`, `${publicWebAssetsFolder}/css/store.min.css`);
-// mix.sass(`./apps/web/sass/error.scss`, `${publicWebAssetsFolder}/css/error.min.css`).options({
-//     processCssUrls: false,
-//     postCss: [tailwindcss("./tailwind.config.js")],
-// });
-
 mix.copyDirectory("./apps/web/public", `${publicWebAssetsFolder}`);
 
 const publicPanelAssetsFolder = "public/panel";
