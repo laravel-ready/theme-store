@@ -9,17 +9,13 @@
                     <!-- Card Collection -->
                     <div class="{{ $i == 0 ? 'left' : 'right' }}-collection">
                         @foreach ($featuredCategories[$i] as $key => $item)
-                            <!-- Card Item -->
-                            <a href="{{ route('theme-store.web.category.details', $item->slug) }}">
-                                {{-- <div class="card-item-{{ $key + 1 }}"> --}}
-                                <div class="card-item-default">
-                                    <img src="{{ $item->image }}" alt="{{ $item->name }} Logo" />
-
-                                    <p>
-                                        {{ $item->name }}
-                                    </p>
-                                </div>
-                            </a>
+                            @include(
+                                'theme-store::web.components.category.featured-card-item',
+                                [
+                                    'item' => $item,
+                                    'key' => $key,
+                                ]
+                            )
                         @endforeach
                     </div>
                 @endfor
@@ -53,14 +49,14 @@
             <div class="tags">
                 @foreach ($latestCategories as $item)
                     <!-- Tag -->
-                    <a href="{{ route('theme-store.web.category.details', $item->slug) }}" class="tag">
+                    <a href="{{ route('theme-store.web.categories.item', $item->slug) }}" class="tag">
                         {{ $item->name }}
                     </a>
                 @endforeach
             </div>
 
             <!-- View All -->
-            <a class="view-all" href="{{ route('theme-store.web.category.index') }}">
+            <a class="view-all" href="{{ route('theme-store.web.categories.index') }}">
                 View all
 
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
