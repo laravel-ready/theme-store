@@ -4,7 +4,7 @@
     <div class="title-bar">
         @if (isset($topLine) && $topLine)
             <!-- Underline -->
-            <div class="underline line-orange">
+            <div class="underline {{ isset($useThemeColor) && $useThemeColor ? 'line-orange' : '' }}">
                 <!-- Line 1 -->
                 <span class="line line-1"></span>
 
@@ -34,7 +34,7 @@
 
         @if (isset($bottomLine) && $bottomLine)
             <!-- Underline -->
-            <div class="underline line-orange">
+            <div class="underline {{ isset($useThemeColor) && $useThemeColor ? 'line-orange' : '' }}">
                 <!-- Line 1 -->
                 <span class="line line-1"></span>
 

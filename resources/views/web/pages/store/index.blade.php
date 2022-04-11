@@ -52,6 +52,7 @@
         @include(
             'theme-store::web.components.common.section-title-bar',
             [
+                'useThemeColor' => true,
                 // 'topLine' => true,
                 'bottomLine' => true,
                 'title' => 'Featured Categories',

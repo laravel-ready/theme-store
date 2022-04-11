@@ -8,6 +8,9 @@
 @endpush
 
 @section('content')
+    {{-- Page Hero --}}
+    @include('theme-store::web.components.common.hero-section')
+
     <main>
         <!-- Categories Preview -->
         <div class="categories-preview">
