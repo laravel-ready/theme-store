@@ -35,4 +35,9 @@ class CategoryController extends Controller
             'categoriesChunk'
         ));
     }
+
+    public function item()
+    {
+        return view('theme-store::web.pages.categories.item');
+    }
 }
