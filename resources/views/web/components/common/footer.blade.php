@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer>
+<footer class="dark">
     <div class="footer-content">
         <!-- Nav Links -->
         <nav class="nav-links">
@@ -20,9 +20,9 @@
             </a>
 
             @if (config('theme-store.blog_url'))
-            <a href="{{ config('theme-store.blog_url') }}">
-                Blog
-            </a>
+                <a href="{{ config('theme-store.blog_url') }}">
+                    Blog
+                </a>
             @endif
 
             <a href="#">
