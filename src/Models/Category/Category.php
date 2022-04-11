@@ -5,6 +5,7 @@ namespace LaravelReady\ThemeStore\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
@@ -41,7 +42,7 @@ class Category extends Model
 
     public function getImageAttribute($value)
     {
-        return $value ? url("storage/theme-store/uploads/{$value}") : null;
+        return $value ? Storage::disk('theme_store')->url($value) : null;
     }
 
     public function getFeaturedAttribute($value)

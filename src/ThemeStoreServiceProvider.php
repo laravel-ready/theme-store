@@ -75,8 +75,8 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
     {
         Config::set("filesystems.disks.theme_store", [
             'driver' => 'local',
-            'root' => storage_path('app/public/theme-store/uploads'),
-            'url' => env('APP_URL') . '/storage/theme-store/uploads',
+            'root' => storage_path('app/public/theme-store'),
+            'url' => request()->getSchemeAndHttpHost() . '/storage/themep-store',
             'visibility' => 'public',
         ]);
     }

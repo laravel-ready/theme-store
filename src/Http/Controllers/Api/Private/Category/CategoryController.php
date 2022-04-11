@@ -63,16 +63,19 @@ class CategoryController extends Controller
      * @param  \App\Models\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function upload(Request $request, Category $category)
+    public function upload(UpdateCategoryRequest $request, Category $category)
     {
-        $categoryImageName = "category/{$category->id}.png";
-        $fileTempPath = file_get_contents($request->file('filepond')->getRealPath());
+        $imageFile = $request->file('filepond');
+        $ext = $imageFile->getClientOriginalExtension();
+
+        $categoryImageName = "category/{$category->id}.{$ext}";
+        $imageContent = file_get_contents($request->file('filepond')->getRealPath());
 
         if (Storage::disk('theme_store')->exists($categoryImageName)) {
             Storage::disk('theme_store')->delete($categoryImageName);
         }
 
-        $upload = Storage::disk('theme_store')->put($categoryImageName, $fileTempPath);
+        $upload = Storage::disk('theme_store')->put($categoryImageName, $imageContent);
 
         if ($upload) {
             $category->image = $categoryImageName;
