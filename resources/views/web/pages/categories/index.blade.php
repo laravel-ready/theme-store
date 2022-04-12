@@ -9,11 +9,13 @@
 
 @section('content')
     {{-- Page Hero --}}
-    @include('theme-store::web.components.common.hero-section')
+    @include('theme-store::web.components.common.hero-section', [
+        'title' => 'Categories',
+    ])
 
     <main>
         <!-- Categories Preview -->
-        <div class="categories-preview">
+        <div class="p-0 categories-preview">
             <!-- Category Cards -->
             <div class="category-collection">
                 <!-- Cards Container -->

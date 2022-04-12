@@ -1,6 +1,6 @@
 <!-- Page Hero Container -->
 <section class="page-hero-container"
-    style="background-image: url({{ asset('assets/store/web/images/common/bg-1.jpg') }});">
+    style="background-image: url({{ isset($imageUrl) && $imageUrl ? $imageUrl : asset('assets/store/web/images/common/bg-1.jpg') }});">
     <!-- Hero -->
     <div class="hero">
         <!-- Content -->
@@ -12,7 +12,7 @@
                     'useThemeColor' => false,
                     'topLine' => false,
                     'bottomLine' => true,
-                    'title' => 'Categories',
+                    'title' => $title,
                     // 'message' => 'the technologies we use',
                 ]
             )
