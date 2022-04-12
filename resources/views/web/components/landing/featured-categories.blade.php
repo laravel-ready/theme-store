@@ -49,7 +49,7 @@
             <div class="tags">
                 @foreach ($latestCategories as $item)
                     <!-- Tag -->
-                    <a href="{{ route('theme-store.web.categories.item', $item->slug) }}" class="tag">
+                    <a href="{{ route('theme-store.web.categories.show', $item->slug) }}" class="tag">
                         {{ $item->name }}
                     </a>
                 @endforeach
