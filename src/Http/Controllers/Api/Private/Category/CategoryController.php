@@ -46,7 +46,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category $category
+     * @param  \LaravelReady\ThemeStore\Models\Category\Category $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -60,7 +60,7 @@ class CategoryController extends Controller
     /**
      * Save uploaded image for target category
      *
-     * @param  \App\Models\Category $category
+     * @param  \LaravelReady\ThemeStore\Models\Category\Category $category
      * @return \Illuminate\Http\Response
      */
     public function upload(UpdateCategoryRequest $request, Category $category)
@@ -97,7 +97,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateCategoryRequest  $request
-     * @param  \App\Models\Category $category
+     * @param  \LaravelReady\ThemeStore\Models\Category\Category $category
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, Category $category)
@@ -112,7 +112,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \LaravelReady\ThemeStore\Models\Category\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
