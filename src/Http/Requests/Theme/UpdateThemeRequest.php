@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelReady\ThemeStore\Http\Requests;
+namespace LaravelReady\ThemeStore\Http\Requests\Theme;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ThemeCreateRequest extends FormRequest
+class UpdateThemeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +27,7 @@ class ThemeCreateRequest extends FormRequest
             'name' => 'required|string|min:1|max:50',
             'description' => 'required|string',
             'vendor' => 'required|string|min:1|max:50',
-            'group' => 'required|string|min:1|max:50',
-            'authors' => 'required|array|min:1|max:10',
-            'authors.*.name' => 'required|string|min:1|max:50',
-            'authors.*.contact' => 'required|string|min:1|max:50',
+            'group' => 'required|string|min:1|max:50'
         ];
     }
 }
