@@ -14,3 +14,4 @@ vendor/
 mix-manifest.json
 
 resources/apps/
+.vscode/settings.json
