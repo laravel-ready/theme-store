@@ -5,8 +5,10 @@ use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 
-use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Category\CategoryController;
 use LaravelReady\ThemeStore\Http\Controllers\Api\Auth\AuthController;
+
+use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Category\CategoryController;
+use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Theme\ThemeController;
 
 Route::name('theme-store.api.')
     ->prefix(Config::get('theme-store.endpoints.api.prefix', 'api/theme-store'))
@@ -36,8 +38,14 @@ Route::name('theme-store.api.')
                     Route::get('me', [AuthController::class, 'me'])->name('me');
                 });
 
+                // theme routes
+                Route::prefix('themes')->name('theme.')->group(function () {
+                    Route::resource('', ThemeController::class)->parameters(['' => 'theme']);
+                    Route::post('{theme}/upload', [ThemeController::class, 'upload'])->name('upload');
+                });
 
-                Route::prefix('category')->name('category.')->group(function () {
+                // category routes
+                Route::prefix('categories')->name('category.')->group(function () {
                     Route::resource('', CategoryController::class)->parameters(['' => 'category']);
                     Route::post('{category}/upload', [CategoryController::class, 'upload'])->name('upload');
                 });
