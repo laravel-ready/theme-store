@@ -25,9 +25,9 @@ class CreateTsThemeCategoryTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('name', 50);
-            $table->string('slug', 50);
+            $table->string('slug', 50)->unique();
             $table->text('description', 500)->nullable();
-            $table->string('image', 150)->nullable();
+            $table->string('image', 50)->nullable();
             $table->boolean('featured')->default(false);
 
             $table->softDeletes();

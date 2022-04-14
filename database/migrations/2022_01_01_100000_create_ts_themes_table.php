@@ -30,6 +30,7 @@ class CreateTsThemesTable extends Migration
             $table->string('vendor', 50);
             $table->string('group', 50);
             $table->boolean('status')->default(1);
+            $table->string('cover', 50)->nullable();
 
             $table->unique(['slug', 'vendor', 'group']);
 
