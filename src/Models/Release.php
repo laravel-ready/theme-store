@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+use LaravelReady\ThemeStore\Models\Theme\Theme;
+
 class Release extends Model
 {
     public function __construct(array $attributes = [])

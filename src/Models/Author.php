@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+use LaravelReady\ThemeStore\Models\Theme\Theme;
+
 class Author extends Model
 {
     public function __construct(array $attributes = [])
