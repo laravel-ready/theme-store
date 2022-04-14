@@ -36,8 +36,23 @@ class CategoryController extends Controller
         ));
     }
 
-    public function item()
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $slug)
     {
-        return view('theme-store::web.pages.categories.item');
+        $category = Category::where('slug', $slug)->withTrashed()->first();
+
+        if ($category) {
+            if ($category->trashed()) {
+                return response()->view('theme-store::web.errors.404', [
+                    'notFoundDescription' => 'The requested category no longer exists. It may have been removed or suspended.',
+                ], 404);
+            }
+
+            return view('theme-store::web.pages.categories.item', compact('category'));
+        } else {
+            return response()->view('theme-store::web.errors.404', [], 404);
+        }
     }
 }
