@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+use LaravelReady\ThemeStore\Models\Theme\Theme;
 
 class Category extends Model
 {
@@ -48,5 +51,10 @@ class Category extends Model
     public function getFeaturedAttribute($value)
     {
         return $value == 1;
+    }
+
+    public function themes(): BelongsToMany
+    {
+        return $this->belongsToMany(Theme::class);
     }
 }
