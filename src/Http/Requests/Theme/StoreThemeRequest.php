@@ -2,20 +2,10 @@
 
 namespace LaravelReady\ThemeStore\Http\Requests\Theme;
 
-use Illuminate\Foundation\Http\FormRequest;
+use LaravelReady\ThemeStore\Http\Requests\ApiFormRequest;
 
-class StoreThemeRequest extends FormRequest
+class StoreThemeRequest extends ApiFormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,12 +15,12 @@ class StoreThemeRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:1|max:50',
-            'description' => 'required|string',
+            'description' => 'required|string|min:1',
             'vendor' => 'required|string|min:1|max:50',
             'group' => 'required|string|min:1|max:50',
+            'status' => 'nullable|boolean',
+            'featured' => 'nullable|boolean',
             'authors' => 'required|array|min:1|max:10',
-            'authors.*.name' => 'required|string|min:1|max:50',
-            'authors.*.contact' => 'required|string|min:1|max:50',
         ];
     }
 }

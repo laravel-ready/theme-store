@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelReady\ThemeStore\Http\Requests\Category;
+namespace LaravelReady\ThemeStore\Http\Requests\Author;
 
 use LaravelReady\ThemeStore\Http\Requests\ApiFormRequest;
 
-class UpdateCategoryRequest extends ApiFormRequest
+class UpdateAuthorRequest extends ApiFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,8 +15,7 @@ class UpdateCategoryRequest extends ApiFormRequest
     {
         return [
             'name' => 'string|min:1|max:50',
-            'description' => 'string|min:1|max:500',
-            'featured' => 'nullable|boolean',
+            'contact' => 'string|min:1|max:50',
         ];
     }
 }
