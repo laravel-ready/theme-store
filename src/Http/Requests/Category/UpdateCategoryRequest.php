@@ -16,7 +16,7 @@ class UpdateCategoryRequest extends ApiFormRequest
         return [
             'name' => 'string|min:1|max:50',
             'description' => 'string|min:1|max:500',
-            'featured' => 'nullable|boolean',
+            'featured' => 'boolean',
         ];
     }
 }

@@ -14,13 +14,13 @@ class UpdateThemeRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:1|max:50',
-            'description' => 'required|string|min:1',
-            'vendor' => 'required|string|min:1|max:50',
-            'group' => 'required|string|min:1|max:50',
-            'status' => 'nullable|boolean',
-            'featured' => 'nullable|boolean',
-            'authors' => 'required|array|min:1|max:10',
+            'name' => 'string|min:1|max:50',
+            'description' => 'string|min:1',
+            'vendor' => 'string|min:1|max:50',
+            'group' => 'string|min:1|max:50',
+            'status' => 'boolean',
+            'featured' => 'boolean',
+            'authors' => 'array|min:1|max:10',
         ];
     }
 }
