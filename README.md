@@ -8,8 +8,6 @@
 [![License][badge_license]][link_license]
 
 
-This dynamic theme manager brings theme support to Laravel projects. Theme Manager manages multiple theme at same time and you won't lose build-in Laravel features.
-
 ## Installation
 
 Publish store migrations
