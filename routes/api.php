@@ -9,6 +9,7 @@ use LaravelReady\ThemeStore\Http\Controllers\Api\Auth\AuthController;
 
 use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Category\CategoryController;
 use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Theme\ThemeController;
+use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Author\AuthorController;
 
 Route::name('theme-store.api.')
     ->prefix(Config::get('theme-store.endpoints.api.prefix', 'api/theme-store'))
@@ -36,6 +37,12 @@ Route::name('theme-store.api.')
                 Route::name('auth.')->prefix('auth')->group(function () {
                     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
                     Route::get('me', [AuthController::class, 'me'])->name('me');
+                });
+
+                // author routes
+                Route::prefix('authors')->name('author.')->group(function () {
+                    Route::resource('', AuthorController::class)->parameters(['' => 'author']);
+                    Route::post('{theme}/upload', [AuthorController::class, 'upload'])->name('upload');
                 });
 
                 // theme routes
