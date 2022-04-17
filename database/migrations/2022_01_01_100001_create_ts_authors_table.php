@@ -27,6 +27,7 @@ class CreateTsAuthorsTable extends Migration
             $table->string('name', 50);
             $table->string('slug', 50);
             $table->string('contact', 50);
+            $table->string('avatar', 50)->nullable();
 
             $table->softDeletes();
             $table->timestamps();
