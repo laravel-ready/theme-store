@@ -8,5 +8,10 @@
 @endpush
 
 @section('content')
-    {{-- ... --}}
+    {{-- Page Hero --}}
+    @include('theme-store::web.components.common.hero-section', [
+        'title' => $category->name,
+        'message' => $category->description,
+    ])
+
 @endsection
