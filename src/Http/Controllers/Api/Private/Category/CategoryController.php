@@ -4,13 +4,14 @@ namespace LaravelReady\ThemeStore\Http\Controllers\Api\Private\Category;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Storage;
 use LaravelReady\ThemeStore\Models\Category\Category;
-use LaravelReady\ThemeStore\Http\Controllers\Controller;
 use LaravelReady\ThemeStore\Http\Requests\Category\StoreCategoryRequest;
 use LaravelReady\ThemeStore\Http\Requests\Category\UpdateCategoryRequest;
+use LaravelReady\ThemeStore\Http\Requests\Common\UploadFilepondRequest;
 
-class CategoryController extends Controller
+use LaravelReady\ThemeStore\Http\Controllers\Api\ApiBaseController;
+
+class CategoryController extends ApiBaseController
 {
     /**
      * Display a listing of the resource.
@@ -60,25 +61,16 @@ class CategoryController extends Controller
     /**
      * Save uploaded image for target category
      *
+     * @param \LaravelReady\ThemeStore\Http\Requests\Common\UploadFilepondRequest $request
      * @param  \LaravelReady\ThemeStore\Models\Category\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function upload(UpdateCategoryRequest $request, Category $category)
+    public function upload(UploadFilepondRequest $request, Category $category)
     {
-        $imageFile = $request->file('filepond');
-        $ext = $imageFile->getClientOriginalExtension();
+        $filePath = $this->saveFileToDisk($request->file('filepond'), 'categories', $category->id);
 
-        $categoryImageName = "category/{$category->id}.{$ext}";
-        $imageContent = file_get_contents($request->file('filepond')->getRealPath());
-
-        if (Storage::disk('theme_store')->exists($categoryImageName)) {
-            Storage::disk('theme_store')->delete($categoryImageName);
-        }
-
-        $upload = Storage::disk('theme_store')->put($categoryImageName, $imageContent);
-
-        if ($upload) {
-            $category->image = $categoryImageName;
+        if ($filePath) {
+            $category->image = $filePath;
             $category->save();
 
             return [
@@ -117,11 +109,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $categoryImageName = "category/{$category->id}.png";
-
-        if (Storage::disk('theme_store')->exists($categoryImageName)) {
-            Storage::disk('theme_store')->delete($categoryImageName);
-        }
+        $this->deleteFileFromDisk($category->image);
 
         $result = $category->delete();
 
