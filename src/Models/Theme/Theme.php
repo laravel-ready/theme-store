@@ -5,16 +5,20 @@ namespace LaravelReady\ThemeStore\Models\Theme;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+use LaravelReady\ThemeStore\Models\Author\Author;
 use LaravelReady\ThemeStore\Models\Category\Category;
 
 class Theme extends Model
 {
     public function __construct(array $attributes = [])
     {
-        $this->prefix = Config::get('theme-store.default_table_prefix', 'ts_');
-        $this->table = "{$this->prefix}_themes";
+        $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
+
+        $this->table = "{$prefix}_themes";
 
         parent::__construct($attributes);
     }
@@ -28,6 +32,11 @@ class Theme extends Model
         });
     }
 
+    protected $casts = [
+        'status' => 'boolean',
+        'featured' => 'boolean',
+    ];
+
     protected $table = 'ts_themes';
 
     protected $guarded = [];
@@ -39,20 +48,31 @@ class Theme extends Model
         'vendor',
         'group',
         'status',
+        'featured',
+        'cover',
     ];
 
     public function authors(): BelongsToMany
     {
-        return $this->belongsToMany(Author::class, "{$this->prefix}_themes_authors", 'theme_id', 'author_id');
+        $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
+
+        return $this->belongsToMany(Author::class, "{$prefix}_themes_authors", 'theme_id', 'author_id');
     }
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, "{$this->prefix}_themes_categories", 'theme_id', 'category_id');
+        $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
+
+        return $this->belongsToMany(Category::class, "{$prefix}_themes_categories", 'theme_id', 'category_id');
     }
 
     public function releases(): HasMany
     {
         return $this->hasMany(Release::class, 'theme_id');
+    }
+
+    public function getCoverAttribute($value)
+    {
+        return $value ? Storage::disk('theme_store')->url($value) : null;
     }
 }

@@ -33,6 +33,10 @@ class Category extends Model
         });
     }
 
+    protected $casts = [
+        'featured' => 'boolean',
+    ];
+
     protected $table = 'ts_authors';
 
     protected $fillable = [

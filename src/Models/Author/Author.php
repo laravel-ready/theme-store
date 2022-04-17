@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelReady\ThemeStore\Models;
+namespace LaravelReady\ThemeStore\Models\Author;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
@@ -35,15 +35,13 @@ class Author extends Model
         'name',
         'slug',
         'contact',
-        'theme_id',
+        'avatar',
     ];
 
     public function themes(): BelongsToMany
     {
         $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
 
-        return $this->belongsToMany(Theme::class);
-
-        // return $this->belongsToMany(Theme::class, "{$prefix}_themes_authors", 'theme_id', 'author_id');
+        return $this->belongsToMany(Theme::class, "{$prefix}_themes_authors", 'theme_id', 'author_id');
     }
 }
