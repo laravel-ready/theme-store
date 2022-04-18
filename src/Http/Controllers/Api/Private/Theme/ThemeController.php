@@ -63,7 +63,9 @@ class ThemeController extends ApiBaseController
     public function show(string $id)
     {
         $resource = Theme::with([
-            'authors',
+            'authors' => function ($query) {
+                return $query->select('id', 'name');
+            },
         ])->findOrFail($id);
 
         return [
@@ -108,7 +110,12 @@ class ThemeController extends ApiBaseController
      */
     public function update(UpdateThemeRequest $request, Theme $theme)
     {
-        $result = $theme->update($request->all());
+        $theme->authors()->sync($request->input('authors'));
+
+        $result = $theme->update($request->except([
+            'authors',
+            'cover',
+        ]));
 
         return [
             'success' => $result,
