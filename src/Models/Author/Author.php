@@ -5,9 +5,10 @@ namespace LaravelReady\ThemeStore\Models\Author;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 use LaravelReady\ThemeStore\Models\Theme\Theme;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Author extends Model
 {
@@ -29,13 +30,20 @@ class Author extends Model
         });
     }
 
+    protected $casts = [
+        'featured' => 'boolean',
+    ];
+
     protected $table = 'ts_authors';
+
+    protected $guarded = [];
 
     protected $fillable = [
         'name',
         'slug',
         'contact',
         'avatar',
+        'featured',
     ];
 
     public function themes(): BelongsToMany
@@ -43,5 +51,10 @@ class Author extends Model
         $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
 
         return $this->belongsToMany(Theme::class, "{$prefix}_themes_authors", 'theme_id', 'author_id');
+    }
+
+    public function getAvatarAttribute($value)
+    {
+        return $value ? Storage::disk('theme_store')->url($value) : null;
     }
 }

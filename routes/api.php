@@ -42,7 +42,7 @@ Route::name('theme-store.api.')
                 // author routes
                 Route::prefix('authors')->name('author.')->group(function () {
                     Route::resource('', AuthorController::class)->parameters(['' => 'author']);
-                    Route::post('{theme}/upload', [AuthorController::class, 'upload'])->name('upload');
+                    Route::post('{author}/upload', [AuthorController::class, 'upload'])->name('upload');
                 });
 
                 // theme routes

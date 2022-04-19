@@ -109,7 +109,7 @@ class CategoryController extends ApiBaseController
      */
     public function destroy(Category $category)
     {
-        $this->deleteFileFromDisk($category->image);
+        $this->deleteFileFromDisk($category->getAttributes()['image']);
 
         $result = $category->delete();
 

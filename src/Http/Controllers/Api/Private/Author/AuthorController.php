@@ -22,7 +22,7 @@ class AuthorController extends ApiBaseController
     public function index(Request $request)
     {
         $resource = null;
-        $query = Author::select('id', 'name', 'slug', 'contact')->orderBy('created_at', 'DESC');
+        $query = Author::select('id', 'avatar', 'name', 'slug', 'contact', 'featured')->orderBy('created_at', 'DESC');
 
         if ($request->query('all')) {
             $resource = $query->get();
@@ -58,11 +58,11 @@ class AuthorController extends ApiBaseController
      * @param \LaravelReady\ThemeStore\Models\Author\Author $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Author $theme)
+    public function show(Author $author)
     {
         return [
             'success' => true,
-            'result' => $theme,
+            'result' => $author,
         ];
     }
 
@@ -117,13 +117,9 @@ class AuthorController extends ApiBaseController
      */
     public function destroy(Author $author)
     {
-        $categoryImageName = "category/{$author->id}.png";
+        $this->deleteFileFromDisk($author->getAttributes()['avatar']);
 
-        if (Storage::disk('theme_store')->exists($categoryImageName)) {
-            Storage::disk('theme_store')->delete($categoryImageName);
-        }
-
-        $result = $theme->delete();
+        $result = $author->delete();
 
         return [
             'success' => $result,

@@ -130,7 +130,7 @@ class ThemeController extends ApiBaseController
      */
     public function destroy(Theme $theme)
     {
-        $this->deleteFileFromDisk($theme->cover);
+        $this->deleteFileFromDisk($theme->getAttributes()['cover']);
 
         $theme->authors()->detach();
         $result = $theme->delete();
