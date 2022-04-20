@@ -6,9 +6,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use LaravelReady\ThemeStore\Models\Theme\Theme;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Author extends Model
 {

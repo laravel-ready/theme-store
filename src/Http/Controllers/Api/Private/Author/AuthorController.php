@@ -3,7 +3,6 @@
 namespace LaravelReady\ThemeStore\Http\Controllers\Api\Private\Author;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 use LaravelReady\ThemeStore\Models\Author\Author;
 use LaravelReady\ThemeStore\Http\Requests\Author\StoreAuthorRequest;

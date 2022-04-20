@@ -21,6 +21,7 @@ class StoreThemeRequest extends ApiFormRequest
             'status' => 'nullable|boolean',
             'featured' => 'nullable|boolean',
             'authors' => 'required|array|min:1|max:10',
+            'categories' => 'required|array|min:1|max:10',
         ];
     }
 }

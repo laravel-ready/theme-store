@@ -21,6 +21,7 @@ class UpdateThemeRequest extends ApiFormRequest
             'status' => 'boolean',
             'featured' => 'boolean',
             'authors' => 'array|min:1|max:10',
+            'categories' => 'array|min:1|max:10',
         ];
     }
 }

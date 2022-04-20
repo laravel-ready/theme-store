@@ -36,12 +36,15 @@ class ThemeController extends ApiBaseController
      */
     public function store(StoreThemeRequest $request)
     {
-        $authors = $request->input('authors');
 
         $theme = (new Theme($request->except('authors')))->firstOrCreate($request->except('authors'));
 
         if ($theme) {
+            $authors = $request->input('authors');
             $theme->authors()->sync($authors);
+
+            $categories = $request->input('categories');
+            $theme->authors()->sync($categories);
 
             return [
                 'success' => true,
@@ -64,6 +67,9 @@ class ThemeController extends ApiBaseController
     {
         $resource = Theme::with([
             'authors' => function ($query) {
+                return $query->select('id', 'name');
+            },
+            'categories' => function ($query) {
                 return $query->select('id', 'name');
             },
         ])->findOrFail($id);
@@ -111,6 +117,7 @@ class ThemeController extends ApiBaseController
     public function update(UpdateThemeRequest $request, Theme $theme)
     {
         $theme->authors()->sync($request->input('authors'));
+        $theme->categories()->sync($request->input('categories'));
 
         $result = $theme->update($request->except([
             'authors',
@@ -133,6 +140,8 @@ class ThemeController extends ApiBaseController
         $this->deleteFileFromDisk($theme->getAttributes()['cover']);
 
         $theme->authors()->detach();
+        $theme->categories()->detach();
+
         $result = $theme->delete();
 
         return [
