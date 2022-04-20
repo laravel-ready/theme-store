@@ -24,7 +24,7 @@ class CategoryController extends ApiBaseController
         $query = Category::orderBy('created_at', 'DESC');
 
         if ($request->query('all') == 'true') {
-            $resource = $query->select('id', 'avatar', 'name')->get();
+            $resource = $query->select('id', 'image', 'name')->get();
         } else {
             $resource = $query->select('id', 'name', 'description', 'image', 'featured')
                 ->withCount('themes')

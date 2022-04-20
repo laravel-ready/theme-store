@@ -52,11 +52,6 @@ class Category extends Model
         return $value ? Storage::disk('theme_store')->url($value) : null;
     }
 
-    public function getFeaturedAttribute($value)
-    {
-        return $value == 1;
-    }
-
     public function themes(): BelongsToMany
     {
         $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
