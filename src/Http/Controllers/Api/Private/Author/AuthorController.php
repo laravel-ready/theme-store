@@ -24,7 +24,7 @@ class AuthorController extends ApiBaseController
         $resource = null;
         $query = Author::select('id', 'avatar', 'name', 'slug', 'contact', 'featured')->orderBy('created_at', 'DESC');
 
-        if ($request->query('all')) {
+        if ($request->query('all') == 'true') {
             $resource = $query->get();
         } else {
             $resource = $query->paginate(15);
