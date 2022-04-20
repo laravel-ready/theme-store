@@ -36,15 +36,13 @@ class ThemeController extends ApiBaseController
      */
     public function store(StoreThemeRequest $request)
     {
+        $data = $request->except(['authors', 'categories']);
 
-        $theme = (new Theme($request->except('authors')))->firstOrCreate($request->except('authors'));
+        $theme = (new Theme($data))->firstOrCreate($data);
 
         if ($theme) {
-            $authors = $request->input('authors');
-            $theme->authors()->sync($authors);
-
-            $categories = $request->input('categories');
-            $theme->authors()->sync($categories);
+            $theme->authors()->sync($request->input('authors'));
+            $theme->categories()->sync($request->input('categories'));
 
             return [
                 'success' => true,
@@ -118,11 +116,9 @@ class ThemeController extends ApiBaseController
     {
         $theme->authors()->sync($request->input('authors'));
         $theme->categories()->sync($request->input('categories'));
+        $data = $request->except(['authors', 'categories', 'cover']);
 
-        $result = $theme->update($request->except([
-            'authors',
-            'cover',
-        ]));
+        $result = $theme->update($data);
 
         return [
             'success' => $result,
