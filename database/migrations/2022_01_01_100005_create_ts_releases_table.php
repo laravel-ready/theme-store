@@ -21,19 +21,21 @@ class CreateTsReleasesTable extends Migration
      */
     public function up()
     {
-        Schema::create($this->table, function (Blueprint $table) {
-            $table->bigIncrements('id');
+        if (!Schema::hasTable($this->table)) {
+            Schema::create($this->table, function (Blueprint $table) {
+                $table->bigIncrements('id');
 
-            $table->foreignId('theme_id')
-                ->constrained("{$this->prefix}_themes")
-                ->onDelete('cascade');
+                $table->foreignId('theme_id')
+                    ->constrained("{$this->prefix}_themes")
+                    ->onDelete('cascade');
 
-            $table->text('notes');
-            $table->string('version', 20);
+                $table->text('notes');
+                $table->string('version', 20);
 
-            $table->softDeletes();
-            $table->timestamps();
-        });
+                $table->softDeletes();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -43,10 +45,12 @@ class CreateTsReleasesTable extends Migration
      */
     public function down()
     {
-        Schema::table($this->table, function (Blueprint $table) {
-            $table->dropConstrainedForeignId('theme_id');
+        if (Schema::hasTable($this->table)) {
+            Schema::table($this->table, function (Blueprint $table) {
+                $table->dropConstrainedForeignId('theme_id');
 
-            $table->dropIfExists();
-        });
+                $table->dropIfExists();
+            });
+        }
     }
 }

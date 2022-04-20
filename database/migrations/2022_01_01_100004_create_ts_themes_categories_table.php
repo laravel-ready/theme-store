@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTsThemeCategoryTable extends Migration
+class CreateTsThemesCategoriesTable extends Migration
 {
     public function __construct()
     {
@@ -21,17 +21,19 @@ class CreateTsThemeCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create($this->table, function (Blueprint $table) {
-            $table->foreignId('theme_id')
-                ->constrained("{$this->prefix}_themes")
-                ->onDelete('cascade');
+        if (!Schema::hasTable($this->table)) {
+            Schema::create($this->table, function (Blueprint $table) {
+                $table->foreignId('theme_id')
+                    ->constrained("{$this->prefix}_themes")
+                    ->onDelete('cascade');
 
-            $table->foreignId('category_id')
-                ->constrained("{$this->prefix}_categories")
-                ->onDelete('cascade');
+                $table->foreignId('category_id')
+                    ->constrained("{$this->prefix}_categories")
+                    ->onDelete('cascade');
 
-            $table->unique(['theme_id', 'category_id']);
-        });
+                $table->unique(['theme_id', 'category_id']);
+            });
+        }
     }
 
     /**
@@ -42,9 +44,6 @@ class CreateTsThemeCategoryTable extends Migration
     public function down()
     {
         Schema::table($this->table, function (Blueprint $table) {
-            $table->dropConstrainedForeignId('theme_id');
-            $table->dropConstrainedForeignId('category_id');
-
             $table->dropIfExists();
         });
     }

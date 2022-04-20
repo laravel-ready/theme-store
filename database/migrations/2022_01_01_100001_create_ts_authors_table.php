@@ -21,20 +21,22 @@ class CreateTsAuthorsTable extends Migration
      */
     public function up()
     {
-        Schema::create($this->table, function (Blueprint $table) {
-            $table->bigIncrements('id');
+        if (!Schema::hasTable($this->table)) {
+            Schema::create($this->table, function (Blueprint $table) {
+                $table->bigIncrements('id');
 
-            $table->string('name', 50);
-            $table->string('slug', 50);
-            $table->string('contact', 50);
-            $table->string('avatar', 50)->nullable();
-            $table->boolean('featured')->default(false);
+                $table->string('name', 50);
+                $table->string('slug', 50);
+                $table->string('contact', 50);
+                $table->string('avatar', 50)->nullable();
+                $table->boolean('featured')->default(false);
 
-            $table->softDeletes();
-            $table->timestamps();
+                $table->softDeletes();
+                $table->timestamps();
 
-            $table->unique(['name', 'contact']);
-        });
+                $table->unique(['name', 'contact']);
+            });
+        }
     }
 
     /**
@@ -44,8 +46,10 @@ class CreateTsAuthorsTable extends Migration
      */
     public function down()
     {
-        Schema::table($this->table, function (Blueprint $table) {
-            $table->dropIfExists();
-        });
+        if (Schema::hasTable($this->table)) {
+            Schema::table($this->table, function (Blueprint $table) {
+                $table->dropIfExists();
+            });
+        }
     }
 }

@@ -21,17 +21,19 @@ class CreateTsThemesAuthorsTable extends Migration
      */
     public function up()
     {
-        Schema::create($this->table, function (Blueprint $table) {
-            $table->foreignId('theme_id')
-                ->constrained("{$this->prefix}_themes")
-                ->onDelete('cascade');
+        if (!Schema::hasTable($this->table)) {
+            Schema::create($this->table, function (Blueprint $table) {
+                $table->foreignId('theme_id')
+                    ->constrained("{$this->prefix}_themes")
+                    ->onDelete('cascade');
 
-            $table->foreignId('author_id')
-                ->constrained("{$this->prefix}_authors")
-                ->onDelete('cascade');
+                $table->foreignId('author_id')
+                    ->constrained("{$this->prefix}_authors")
+                    ->onDelete('cascade');
 
-            $table->unique(['theme_id', 'author_id']);
-        });
+                $table->unique(['theme_id', 'author_id']);
+            });
+        }
     }
 
     /**
@@ -41,11 +43,10 @@ class CreateTsThemesAuthorsTable extends Migration
      */
     public function down()
     {
-        Schema::table($this->table, function (Blueprint $table) {
-            $table->dropConstrainedForeignId('theme_id');
-            $table->dropConstrainedForeignId('author_id');
-
-            $table->dropIfExists();
-        });
+        if (Schema::hasTable($this->table)) {
+            Schema::table($this->table, function (Blueprint $table) {
+                $table->dropIfExists();
+            });
+        }
     }
 }
