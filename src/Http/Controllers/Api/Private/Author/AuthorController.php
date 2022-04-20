@@ -21,14 +21,14 @@ class AuthorController extends ApiBaseController
     public function index(Request $request)
     {
         $resource = null;
-        $query = Author::select('id', 'avatar', 'name', 'slug', 'contact', 'featured')
-            ->withCount('themes')
-            ->orderBy('created_at', 'DESC');
+        $query = Author::orderBy('created_at', 'DESC');
 
         if ($request->query('all') == 'true') {
-            $resource = $query->get();
+            $resource = $query->select('id', 'avatar', 'name')->get();
         } else {
-            $resource = $query->paginate(15);
+            $resource = $query->select('id', 'avatar', 'name', 'slug', 'contact', 'featured')
+                ->withCount('themes')
+                ->paginate(15);
         }
 
         return [
