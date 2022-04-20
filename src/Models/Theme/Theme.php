@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -14,6 +15,8 @@ use LaravelReady\ThemeStore\Models\Category\Category;
 
 class Theme extends Model
 {
+    use SoftDeletes;
+
     public function __construct(array $attributes = [])
     {
         $prefix = Config::get('theme-store.default_table_prefix', 'ts_');

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Config;
 
 use LaravelReady\ThemeStore\Http\Controllers\Web\StoreController;
 use LaravelReady\ThemeStore\Http\Controllers\Web\CategoryController;
+use LaravelReady\ThemeStore\Http\Controllers\Web\AuthorController;
+use LaravelReady\ThemeStore\Http\Controllers\Web\ThemeController;
 
 Route::name('theme-store.web.')->prefix(Config::get('theme-store.endpoints.web.prefix', 'theme-store'))
     ->middleware(Config::get('theme-store.endpoints.web.middleware', ['web', 'theme-store-public']))
@@ -12,8 +14,18 @@ Route::name('theme-store.web.')->prefix(Config::get('theme-store.endpoints.web.p
         Route::get('', [StoreController::class, 'index'])->name('index');
         Route::get('search/{keyword}', [StoreController::class, 'search'])->name('search');
 
+        Route::prefix('themes')->name('themes.')->group(function () {
+            Route::get('', [ThemeController::class, 'index'])->name('index');
+            Route::get('{theme}', [ThemeController::class, 'show'])->name('show');
+        });
+
         Route::prefix('categories')->name('categories.')->group(function () {
             Route::get('', [CategoryController::class, 'index'])->name('index');
             Route::get('{category}', [CategoryController::class, 'show'])->name('show');
+        });
+
+        Route::prefix('users')->name('users.')->group(function () {
+            Route::get('', [AuthorController::class, 'index'])->name('index');
+            Route::get('{user}', [AuthorController::class, 'show'])->name('show');
         });
     });

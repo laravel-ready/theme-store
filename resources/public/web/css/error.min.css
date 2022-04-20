@@ -443,6 +443,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: transparent;
 }
 
+.p-0 {
+  padding: 0px !important;
+}
+
 .error-container {
   display: flex;
   flex-direction: column;
@@ -654,12 +658,13 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 body {
+  margin-top: auto;
+  margin-bottom: auto;
   display: flex;
+  height: 100%;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  padding-top: 12rem;
-  padding-bottom: 12rem;
 }

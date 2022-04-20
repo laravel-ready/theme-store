@@ -48,31 +48,49 @@
 
     <!-- Main Content -->
     <main>
-        {{-- Title Bar --}}
-        @include(
-            'theme-store::web.components.common.section-title-bar',
-            [
-                'useThemeColor' => true,
-                // 'topLine' => true,
-                'bottomLine' => true,
-                'title' => 'Featured Categories',
-                // 'message' => 'the technologies we use',
-            ]
-        )
-
-        {{-- Featured Categories --}}
-        @include(
-            'theme-store::web.components.landing.featured-categories'
-        )
-
         {{-- Search Bar --}}
         @include('theme-store::web.components.common.search-bar')
 
-        <div class="store-card-container">
-            @for ($i = 0; $i < 6; $i++)
-                @include('theme-store::web.components.theme-card')
-            @endfor
-        </div>
+        {{-- Featured Categories Section --}}
+        <section class="featured-categories">
+            {{-- Section Title --}}
+            @include(
+                'theme-store::web.components.common.section-title-bar',
+                [
+                    'useThemeColor' => true,
+                    'topLine' => true,
+                    'bottomLine' => true,
+                    'title' => 'Featured Categories',
+                    // 'message' => 'the technologies we use',
+                ]
+            )
+
+            {{-- Featured Categories --}}
+            @include(
+                'theme-store::web.components.landing.featured-categories'
+            )
+        </section>
+
+        {{-- Featured Themes Section --}}
+        <section>
+            {{-- Section Title --}}
+            @include(
+                'theme-store::web.components.common.section-title-bar',
+                [
+                    'useThemeColor' => true,
+                    'topLine' => true,
+                    'bottomLine' => true,
+                    'title' => 'Featured Themes',
+                    // 'message' => 'add some message',
+                ]
+            )
+
+            <div class="store-card-container">
+                @foreach ($featuredThemes as $theme)
+                    @include('theme-store::web.components.theme-card')
+                @endforeach
+            </div>
+        </section>
     </main>
 @endsection
 

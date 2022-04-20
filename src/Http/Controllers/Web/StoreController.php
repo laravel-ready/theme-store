@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 
-use LaravelReady\ThemeStore\Models\Theme;
 use LaravelReady\ThemeStore\Traits\StoreCacheTrait;
 
+use LaravelReady\ThemeStore\Models\Theme\Theme;
 use LaravelReady\ThemeStore\Models\Category\Category;
 use LaravelReady\ThemeStore\Http\Controllers\Controller;
 
@@ -25,7 +25,7 @@ class StoreController extends Controller
     {
         $data = [];
 
-        if (Config::get('theme-store.cache.web.enabled', true)) {
+        if (Config::get('theme-store.cache.web.enabled', true) && env('APP_ENV') != 'local') {
             $data = Cache::remember($this->getCacheKey('store.landing.index'), $this->getCacheLifetime(), function () {
                 return $this->getLandingPageData();
             });
@@ -65,14 +65,19 @@ class StoreController extends Controller
     {
         $data = [];
 
-        $data['featuredCategories'] = Category::select('name', 'slug', 'image')
+        $data['featuredThemes'] = Theme::select('id', 'name', 'slug', 'cover')
+            ->with([
+                'authors' => function ($query) {
+                    return $query->select('id', 'name', 'slug')->first();
+                },
+                'categories' => function ($query) {
+                    return $query->select('id', 'name', 'slug')->first();
+                },
+            ])
             ->orderBy('created_at', 'DESC')
             ->where('featured', true)
-            ->limit(6)->get()
-            ->chunk(3)
-            ->map(function ($items) {
-                return $items->values()->all();
-            });
+            ->where('status', true)
+            ->limit(6)->get();
 
         $data['featuredCategories'] = Category::select('name', 'slug', 'image')
             ->orderBy('created_at', 'DESC')
