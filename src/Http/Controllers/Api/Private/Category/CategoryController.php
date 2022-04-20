@@ -21,12 +21,14 @@ class CategoryController extends ApiBaseController
     public function index(Request $request)
     {
         $resource = null;
-        $query = Category::select('id', 'name', 'description', 'image', 'featured')->orderBy('created_at', 'DESC');
+        $query = Category::orderBy('created_at', 'DESC');
 
         if ($request->query('all') == 'true') {
-            $resource = $query->get();
+            $resource = $query->select('id', 'avatar', 'name')->get();
         } else {
-            $resource = $query->paginate(15);
+            $resource = $query->select('id', 'name', 'description', 'image', 'featured')
+                ->withCount('themes')
+                ->paginate(15);
         }
 
         return [
