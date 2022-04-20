@@ -43,10 +43,13 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
             __DIR__ . '/../config/theme-store.php' => $this->app->configPath('theme-store.php'),
         ], 'theme-store-config');
 
+        $migrationsPath = __DIR__ . '/../database/migrations/';
+
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations/laravel-ready/theme-store')
+            $migrationsPath => database_path('migrations/laravel-ready/theme-store')
         ], 'theme-store-migrations');
 
+        $this->loadMigrationsFrom($migrationsPath);
 
         $assetPath = Config::get('theme-store.assets_path', 'assets/store');
 
