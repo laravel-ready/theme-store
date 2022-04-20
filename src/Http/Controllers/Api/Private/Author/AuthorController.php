@@ -21,7 +21,9 @@ class AuthorController extends ApiBaseController
     public function index(Request $request)
     {
         $resource = null;
-        $query = Author::select('id', 'avatar', 'name', 'slug', 'contact', 'featured')->orderBy('created_at', 'DESC');
+        $query = Author::select('id', 'avatar', 'name', 'slug', 'contact', 'featured')
+            ->withCount('themes')
+            ->orderBy('created_at', 'DESC');
 
         if ($request->query('all') == 'true') {
             $resource = $query->get();
