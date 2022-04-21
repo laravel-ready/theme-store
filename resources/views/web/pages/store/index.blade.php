@@ -87,7 +87,9 @@
 
             <div class="store-card-container">
                 @foreach ($featuredThemes as $theme)
-                    @include('theme-store::web.components.theme-card')
+                    @include(
+                        'theme-store::web.components.theme.theme-card'
+                    )
                 @endforeach
             </div>
         </section>
