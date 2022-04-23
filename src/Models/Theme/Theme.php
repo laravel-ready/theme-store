@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use LaravelReady\ThemeStore\Models\Author\Author;
 use LaravelReady\ThemeStore\Models\Category\Category;
+use LaravelReady\ThemeStore\Models\Release\Release;
 
 class Theme extends Model
 {
@@ -76,6 +77,6 @@ class Theme extends Model
 
     public function getCoverAttribute($value)
     {
-        return $value ? Storage::disk('theme_store')->url($value) : null;
+        return $value ? Storage::disk('theme_store_public')->url($value) : null;
     }
 }

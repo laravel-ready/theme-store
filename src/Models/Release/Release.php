@@ -1,12 +1,15 @@
 <?php
 
-namespace LaravelReady\ThemeStore\Models;
+namespace LaravelReady\ThemeStore\Models\Release;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use LaravelReady\ThemeStore\Models\Theme\Theme;
+use LaravelReady\ThemeStore\Helpers\CommonHelpers;
 
 class Release extends Model
 {
@@ -24,13 +27,34 @@ class Release extends Model
     protected $fillable = [
         'notes',
         'version',
+        'zip_file',
         'theme_id',
+        'status',
+        'file_size',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     public function theme(): BelongsTo
     {
-        $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
-
         return $this->belongsTo(Theme::class);
+    }
+
+    public function getFileSizeAttribute($value)
+    {
+        return $value ? CommonHelpers::getHumanReadableSize($value) : null;
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y H:i:s');
     }
 }

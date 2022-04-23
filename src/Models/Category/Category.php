@@ -49,7 +49,7 @@ class Category extends Model
 
     public function getImageAttribute($value)
     {
-        return $value ? Storage::disk('theme_store')->url($value) : null;
+        return $value ? Storage::disk('theme_store_public')->url($value) : null;
     }
 
     public function themes(): BelongsToMany

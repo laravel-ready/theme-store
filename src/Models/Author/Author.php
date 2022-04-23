@@ -58,6 +58,6 @@ class Author extends Model
 
     public function getAvatarAttribute($value)
     {
-        return $value ? Storage::disk('theme_store')->url($value) : null;
+        return $value ? Storage::disk('theme_store_public')->url($value) : null;
     }
 }
