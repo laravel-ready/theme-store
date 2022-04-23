@@ -30,7 +30,10 @@ class CreateTsReleasesTable extends Migration
                     ->onDelete('cascade');
 
                 $table->text('notes');
-                $table->string('version', 20);
+                $table->string('version', 20)->unique();
+                $table->string('zip_file', 50);
+                $table->bigInteger('file_size')->nullable();
+                $table->boolean('status')->default(true);
 
                 $table->softDeletes();
                 $table->timestamps();

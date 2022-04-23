@@ -20,7 +20,7 @@ class ThemeController extends ApiBaseController
      */
     public function index(Request $request)
     {
-        $resource = Theme::orderBy('created_at', 'DESC')->paginate(15);
+        $resource = Theme::withCount('releases')->orderBy('created_at', 'DESC')->paginate(15);
 
         return [
             'success' => true,

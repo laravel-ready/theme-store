@@ -10,6 +10,7 @@ use LaravelReady\ThemeStore\Http\Controllers\Api\Auth\AuthController;
 use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Category\CategoryController;
 use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Theme\ThemeController;
 use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Author\AuthorController;
+use LaravelReady\ThemeStore\Http\Controllers\Api\Private\Theme\Release\ReleaseController;
 
 Route::name('theme-store.api.')
     ->prefix(Config::get('theme-store.endpoints.api.prefix', 'api/theme-store'))
@@ -39,20 +40,31 @@ Route::name('theme-store.api.')
                     Route::get('me', [AuthController::class, 'me'])->name('me');
                 });
 
-                // author routes
-                Route::prefix('authors')->name('author.')->group(function () {
+                // authors
+                Route::prefix('authors')->name('authors.')->group(function () {
                     Route::resource('', AuthorController::class)->parameters(['' => 'author']);
                     Route::post('{author}/upload', [AuthorController::class, 'upload'])->name('upload');
                 });
 
-                // theme routes
-                Route::prefix('themes')->name('theme.')->group(function () {
+                // themes
+                Route::prefix('themes')->name('themes.')->group(function () {
+                    // releases
+                    Route::prefix('releases')->name('releases.')->group(function () {
+                        Route::resource('', ReleaseController::class)->parameters(['' => 'release']);
+                        Route::post('{release}/upload', [ReleaseController::class, 'upload'])->name('upload');
+                        Route::get('{release}/download', [ReleaseController::class, 'download'])->name('download')
+                            ->middleware(
+                                ['throttle:20,1']
+                            );
+                    });
+
+                    // themes
                     Route::resource('', ThemeController::class)->parameters(['' => 'theme']);
                     Route::post('{theme}/upload', [ThemeController::class, 'upload'])->name('upload');
                 });
 
-                // category routes
-                Route::prefix('categories')->name('category.')->group(function () {
+                // categories
+                Route::prefix('categories')->name('categories.')->group(function () {
                     Route::resource('', CategoryController::class)->parameters(['' => 'category']);
                     Route::post('{category}/upload', [CategoryController::class, 'upload'])->name('upload');
                 });
