@@ -3,7 +3,7 @@
     "description": "Theme store feature for Laravel",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.3.0",
     "keywords": [
         "laravel",
         "theme manager",
@@ -22,6 +22,7 @@
     "require": {
         "php": "^8.0.2",
         "illuminate/support": "^9.0",
+        "laravel-ready/readable-numbers": "^1.0",
         "laravel/sanctum": "^2.15"
     },
     "require-dev": {
