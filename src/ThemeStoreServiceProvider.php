@@ -76,11 +76,19 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
      */
     private function registerDisks()
     {
-        Config::set("filesystems.disks.theme_store", [
+        // public disk
+        Config::set("filesystems.disks.theme_store_public", [
             'driver' => 'local',
             'root' => storage_path('app/public/theme-store'),
             'url' => request()->getSchemeAndHttpHost() . '/storage/theme-store',
             'visibility' => 'public',
+        ]);
+
+        // private disk
+        Config::set("filesystems.disks.theme_store_private", [
+            'driver' => 'local',
+            'root' => storage_path('app/theme-store'),
+            'visibility' => 'private',
         ]);
     }
 
