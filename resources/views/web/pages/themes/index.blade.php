@@ -4,7 +4,7 @@
 
 @push('styles')
     {{-- Category Pages Styles --}}
-    <link rel="stylesheet" href="{{ asset('assets/store/web/css/category.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/store/web/css/theme.min.css') }}" />
 @endpush
 
 @section('content')

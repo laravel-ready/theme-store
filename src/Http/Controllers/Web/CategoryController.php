@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use LaravelReady\ThemeStore\Traits\StoreCacheTrait;
 
 use LaravelReady\ThemeStore\Models\Category\Category;
+use LaravelReady\ThemeStore\Models\Theme\Theme;
 use LaravelReady\ThemeStore\Http\Controllers\Controller;
 
 class CategoryController extends Controller
@@ -50,7 +51,23 @@ class CategoryController extends Controller
                 ], 404);
             }
 
-            return view('theme-store::web.pages.categories.item', compact('category'));
+            $themes = Theme::with([
+                'categories' => function ($query) {
+                    $query->select('id', 'name', 'slug', 'image')->orderBy('name', 'ASC');
+                },
+            ])
+                ->where('status', true)
+                ->whereHas('categories', function ($query) use ($category) {
+                    $query->where('id', $category->id);
+                })
+                ->orderBy('featured', 'DESC')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(6);
+
+            return view('theme-store::web.pages.categories.item', compact(
+                'category',
+                'themes'
+            ));
         } else {
             return response()->view('theme-store::web.errors.404', [], 404);
         }

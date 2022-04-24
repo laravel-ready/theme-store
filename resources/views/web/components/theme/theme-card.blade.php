@@ -7,27 +7,27 @@
             <img class="thumbnail"
                 src="{{ $theme->cover ? $theme->cover : asset('/assets/store/web/images/common/default-placeholder.png') }}"
                 alt="Product Preview" />
+
+            <!-- Hover Bar -->
+            <div class="hover-bar">
+                {{-- <!-- Add to Bookmarks Button -->
+                    <button class="add-to-bookmarks-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                            width="24" height="24" viewBox="0 0 24 24" title="Add to Bookmarks">
+                            <path d="M2,16H10V14H2M18,14V10H16V14H12V16H16V20H18V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z" />
+                        </svg>
+                    </button>
+
+                    <!-- Add to Favorites Button -->
+                    <button class="add-to-favorites-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                            width="24" height="24" viewBox="0 0 24 24" title="Add to Favorites">
+                            <path
+                                d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+                        </svg>
+                    </button> --}}
+            </div>
         </a>
-
-        <!-- Hover Bar -->
-        <div class="hover-bar">
-            {{-- <!-- Add to Bookmarks Button -->
-            <button class="add-to-bookmarks-button">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                    width="24" height="24" viewBox="0 0 24 24" title="Add to Bookmarks">
-                    <path d="M2,16H10V14H2M18,14V10H16V14H12V16H16V20H18V16H22V14M14,6H2V8H14M14,10H2V12H14V10Z" />
-                </svg>
-            </button>
-
-            <!-- Add to Favorites Button -->
-            <button class="add-to-favorites-button">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                    width="24" height="24" viewBox="0 0 24 24" title="Add to Favorites">
-                    <path
-                        d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
-                </svg>
-            </button> --}}
-        </div>
     </div>
 
     <!-- Body -->

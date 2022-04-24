@@ -56,6 +56,6 @@ class Category extends Model
     {
         $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
 
-        return $this->belongsToMany(Theme::class, "{$prefix}_themes_authors", 'theme_id', 'author_id');
+        return $this->belongsToMany(Theme::class, "{$prefix}_themes_categories", 'category_id', 'theme_id');
     }
 }

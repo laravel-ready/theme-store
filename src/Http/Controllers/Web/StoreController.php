@@ -71,7 +71,7 @@ class StoreController extends Controller
                     return $query->select('id', 'name', 'slug')->first();
                 },
                 'categories' => function ($query) {
-                    return $query->select('id', 'name', 'slug')->first();
+                    return $query->select('id', 'name', 'slug')->orderBy('name', 'ASC')->first();
                 },
             ])
             ->orderBy('created_at', 'DESC')

@@ -57,7 +57,7 @@
 
             <!-- View All -->
             <a class="view-all" href="{{ route('theme-store.web.categories.index') }}">
-                View all
+                View All
 
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                     width="24" height="24" viewBox="0 0 24 24">

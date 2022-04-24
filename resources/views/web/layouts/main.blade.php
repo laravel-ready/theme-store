@@ -21,7 +21,9 @@
     <div id="app">
         @include('theme-store::web.components.common.navbar')
 
-        @yield('content')
+        <div class="page-content">
+            @yield('content')
+        </div>
 
         @include('theme-store::web.components.common.footer')
     </div>
