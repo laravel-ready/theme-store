@@ -1,7 +1,7 @@
 <div class="preview-hero">
     <div class="content">
         <img src="{{ $theme->cover ? $theme->cover : asset('/assets/store/web/images/common/default-placeholder.png') }}"
-            alt="Theme {{ $theme->name }}" class="hero-image">
+            alt="Theme {{ $theme->name }}" class="hero-image" loading="lazy" width="600" height="400">
 
         <div class="details">
             <div class="title">
@@ -12,14 +12,38 @@
                 {{ $theme->description }}
             </div>
 
+            <!-- Categories -->
             <div class="categories">
                 @foreach ($theme->categories as $category)
                     <a href="{{ route('theme-store.web.categories.show', $category->slug) }}"
                         title="{{ $category->name }}">
                         <img src="{{ $category->image ? $category->image : asset('assets/store/web/images/common/default-placeholder.png') }}"
-                            alt="Category {{ $category->name }}">
+                            alt="Category {{ $category->name }}" loading="lazy" height="28" width="28">
                     </a>
                 @endforeach
+            </div>
+
+            <!-- Links -->
+            <div class="links links-left">
+                <a class="primary-button btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" />
+                    </svg>
+
+                    Preview
+                </a>
+
+                <a class="secondary-button btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M13,5V11H14.17L12,13.17L9.83,11H11V5H13M15,3H9V9H5L12,16L19,9H15V3M19,18H5V20H19V18Z" />
+                    </svg>
+
+                    Download
+                </a>
             </div>
         </div>
     </div>

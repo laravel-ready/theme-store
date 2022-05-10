@@ -4,7 +4,8 @@
     <a class="link" href="#">
         <!-- Image -->
         <img class="image" alt="{{ $item->name }}"
-            src="{{ $item->image ? $item->image : asset('assets/store/web/images/common/default-placeholder.png') }}" />
+            src="{{ $item->image ? $item->image : asset('assets/store/web/images/common/default-placeholder.png') }}"
+            loading="lazy" />
 
         <!-- Body -->
         <div class="body">

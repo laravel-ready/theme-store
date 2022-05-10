@@ -33,7 +33,7 @@
                 </p>
             </div>
 
-            <!-- Button Links Container -->
+            <!-- Links -->
             <div class="links">
                 <button class="primary-button">
                     Get Started

@@ -6,7 +6,7 @@
         <a href="{{ route('theme-store.web.themes.show', $theme->slug) }}" title="{{ $theme->name }}">
             <img class="thumbnail"
                 src="{{ $theme->cover ? $theme->cover : asset('/assets/store/web/images/common/default-placeholder.png') }}"
-                alt="Product Preview" />
+                alt="Product Preview" loading="lazy" height="192" width="384" />
 
             <!-- Hover Bar -->
             <div class="hover-bar">
