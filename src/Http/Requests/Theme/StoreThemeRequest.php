@@ -20,6 +20,7 @@ class StoreThemeRequest extends ApiFormRequest
             'group' => 'required|string|min:1|max:50',
             'status' => 'nullable|boolean',
             'featured' => 'nullable|boolean',
+            'preview_link' => 'nullable|string|min:1|max:2000',
             'authors' => 'required|array|min:1|max:10',
             'categories' => 'required|array|min:1|max:10',
         ];

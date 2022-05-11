@@ -54,6 +54,7 @@ class Theme extends Model
         'status',
         'featured',
         'cover',
+        'preview_link',
     ];
 
     public function authors(): BelongsToMany

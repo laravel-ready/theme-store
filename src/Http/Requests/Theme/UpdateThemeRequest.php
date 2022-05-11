@@ -20,6 +20,7 @@ class UpdateThemeRequest extends ApiFormRequest
             'group' => 'string|min:1|max:50',
             'status' => 'boolean',
             'featured' => 'boolean',
+            'preview_link' => 'nullable|string|min:1|max:2000',
             'authors' => 'array|min:1|max:10',
             'categories' => 'array|min:1|max:10',
         ];

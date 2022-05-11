@@ -27,6 +27,7 @@ class CreateTsThemesTable extends Migration
 
                 $table->string('name', 50);
                 $table->string('slug', 50)->unique();
+                $table->string('preview_link', 2000)->nullable()->default(null);
                 $table->text('description');
                 $table->string('vendor', 50);
                 $table->string('group', 50);
