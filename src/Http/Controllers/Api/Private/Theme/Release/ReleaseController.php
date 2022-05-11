@@ -3,14 +3,16 @@
 namespace LaravelReady\ThemeStore\Http\Controllers\Api\Private\Theme\Release;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Carbon;
+use LaravelReady\ThemeStore\Helpers\CommonHelpers;
+use LaravelReady\ThemeStore\Models\Theme\Download;
 use LaravelReady\ThemeStore\Models\Release\Release;
+use LaravelReady\ThemeStore\Http\Controllers\Api\ApiBaseController;
+
+use LaravelReady\ThemeStore\Http\Requests\Common\UploadFilepondRequest;
 use LaravelReady\ThemeStore\Http\Requests\Theme\Release\StoreReleaseRequest;
 use LaravelReady\ThemeStore\Http\Requests\Theme\Release\UpdateReleaseRequest;
-use LaravelReady\ThemeStore\Http\Requests\Common\UploadFilepondRequest;
-
-use LaravelReady\ThemeStore\Http\Controllers\Api\ApiBaseController;
 
 class ReleaseController extends ApiBaseController
 {
@@ -25,7 +27,11 @@ class ReleaseController extends ApiBaseController
 
         $resource = null;
         $query = Release::select('id', 'version', 'notes', 'file_size', 'status', 'created_at', 'zip_file')
-            ->where('theme_id', $themeId)->orderBy('created_at', 'DESC');
+            ->with([
+                'downloadCountAllTimes'
+            ])
+            ->where('theme_id', $themeId)
+            ->orderBy('created_at', 'DESC');
 
         if ($request->query('all') == 'true') {
             $resource = $query->get();
@@ -105,7 +111,29 @@ class ReleaseController extends ApiBaseController
      */
     public function download(Release $release)
     {
-        return $this->downloadFileFromDisk($release->zip_file, 'private');
+        $download = Download::where([
+            ['theme_id', '=', $release->theme_id],
+            ['release_id', '=', $release->id],
+            ['user_id', '=', auth()->user()->id],
+            ['source', '=', 'panel']
+        ])
+            ->whereDate('created_at', Carbon::today())
+            ->first();
+
+        if ($download) {
+            $download->times = $download->times + 1;
+            $download->save();
+        } else {
+            Download::firstOrCreate([
+                'theme_id' => $release->theme_id,
+                'release_id' => $release->id,
+                'source' => 'panel'
+            ]);
+        }
+
+        $fileName = CommonHelpers::getThemeDownloadName($release->theme, $release, $release->only_file_name);
+
+        return $this->downloadFileFromDisk($release->zip_file, $fileName, 'private');
     }
 
     /**

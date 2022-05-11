@@ -16,7 +16,12 @@ Route::name('theme-store.web.')->prefix(Config::get('theme-store.endpoints.web.p
 
         Route::prefix('themes')->name('themes.')->group(function () {
             Route::get('', [ThemeController::class, 'index'])->name('index');
-            Route::get('{theme}', [ThemeController::class, 'show'])->name('show');
+            Route::get('{theme_slug}', [ThemeController::class, 'show'])->name('show');
+            Route::get('{theme_slug}/download', [ThemeController::class, 'showDownload'])->name('download.show');
+
+            Route::get('download/{token}', [ThemeController::class, 'downloadTheme'])->middleware([
+                'throttle:5,1',
+            ])->name('download');
         });
 
         Route::prefix('categories')->name('categories.')->group(function () {

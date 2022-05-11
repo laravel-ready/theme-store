@@ -75,6 +75,13 @@ class Theme extends Model
         return $this->hasMany(Release::class, 'theme_id');
     }
 
+    public function activeReleases(): HasMany
+    {
+        return $this->hasMany(Release::class, 'theme_id')
+            ->where('status', true)
+            ->orderBy('created_at', 'DESC');
+    }
+
     public function getCoverAttribute($value)
     {
         return $value ? Storage::disk('theme_store_public')->url($value) : null;

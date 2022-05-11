@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ApiBaseController extends BaseController
@@ -73,10 +74,14 @@ class ApiBaseController extends BaseController
      * @param string $type
      * @return StreamedResponse
      */
-    public function downloadFileFromDisk(string $filePath, string $type = 'public'): StreamedResponse
+    public function downloadFileFromDisk(string $filePath, string $fileName, string $type = 'public'): StreamedResponse
     {
         if (Storage::disk("theme_store_{$type}")->exists($filePath)) {
-            return Storage::disk("theme_store_{$type}")->download($filePath);
+            $headers = [
+                'Content-Type' => 'application/zip, application/octet-stream',
+            ];
+
+            return Storage::disk("theme_store_{$type}")->download($filePath, $fileName, $headers);
         }
 
         // TODO: add exception

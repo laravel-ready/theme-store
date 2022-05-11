@@ -2,14 +2,18 @@
 
 namespace LaravelReady\ThemeStore\Models\Release;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
 use LaravelReady\ThemeStore\Models\Theme\Theme;
 use LaravelReady\ThemeStore\Helpers\CommonHelpers;
+use LaravelReady\ThemeStore\Models\Theme\Download;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Release extends Model
 {
@@ -43,6 +47,10 @@ class Release extends Model
         'deleted_at',
     ];
 
+    protected $appends = [
+        'only_file_name'
+    ];
+
     public function theme(): BelongsTo
     {
         return $this->belongsTo(Theme::class);
@@ -53,8 +61,26 @@ class Release extends Model
         return $value ? CommonHelpers::getHumanReadableSize($value) : null;
     }
 
+    public function getOnlyFileNameAttribute()
+    {
+        return $this->zip_file ? pathinfo($this->zip_file, PATHINFO_FILENAME) : null;
+    }
+
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format('d-m-Y H:i:s');
+    }
+
+    public function downloads(): HasMany
+    {
+        return $this->hasMany(Download::class, 'release_id', 'id');
+    }
+
+    public function downloadCountAllTimes(): HasMany
+    {
+        $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
+
+        return $this->hasMany(Download::class, 'release_id')
+            ->selectRaw("release_id, SUM(times) AS total_downloads");
     }
 }
