@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use LaravelReady\ThemeStore\Models\Author\Author;
-use LaravelReady\ThemeStore\Models\Category\Category;
+use LaravelReady\ThemeStore\Models\Theme\Download;
 use LaravelReady\ThemeStore\Models\Release\Release;
+use LaravelReady\ThemeStore\Models\Category\Category;
 
 class Theme extends Model
 {
@@ -74,6 +75,17 @@ class Theme extends Model
     public function releases(): HasMany
     {
         return $this->hasMany(Release::class, 'theme_id');
+    }
+
+    public function downloads(): HasMany
+    {
+        return $this->hasMany(Download::class, 'theme_id', 'id');
+    }
+
+    public function totalDownloads(): HasMany
+    {
+        return $this->hasMany(Download::class, 'theme_id')
+            ->selectRaw("theme_id, SUM(times) AS total_downloads");
     }
 
     public function activeReleases(): HasMany

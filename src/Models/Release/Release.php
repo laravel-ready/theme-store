@@ -78,8 +78,6 @@ class Release extends Model
 
     public function downloadCountAllTimes(): HasMany
     {
-        $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
-
         return $this->hasMany(Download::class, 'release_id')
             ->selectRaw("release_id, SUM(times) AS total_downloads");
     }

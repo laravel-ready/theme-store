@@ -73,11 +73,14 @@ class StoreController extends Controller
                 'categories' => function ($query) {
                     return $query->select('id', 'name', 'slug')->orderBy('name', 'ASC')->first();
                 },
+                'totalDownloads',
             ])
             ->orderBy('created_at', 'DESC')
             ->where('featured', true)
             ->where('status', true)
-            ->limit(6)->get();
+            ->limit(6)
+            ->get();
+
 
         $data['featuredCategories'] = Category::select('name', 'slug', 'image')
             ->orderBy('created_at', 'DESC')

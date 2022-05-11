@@ -106,7 +106,12 @@
 
                 <!-- Statistic -->
                 <div class="statistic" title="34k Downlaods in this year">
-                    34k Downloads
+                    @if (isset($theme->totalDownloads[0]))
+                        {{ \ReadableNumbers::make((int) $theme->totalDownloads[0]->total_downloads) }}
+                    @else
+                        0
+                    @endif
+                    Downloads
                 </div>
             </div>
 
