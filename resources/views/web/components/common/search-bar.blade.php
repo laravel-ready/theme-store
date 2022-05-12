@@ -1,5 +1,5 @@
 <!-- Search Bar -->
-<div class="search-bar">
+<form class="search-bar" method="GET" action="{{ route('theme-store.web.search') }}">
     <!-- Input Container -->
     <div class="input-container">
         <svg class="class-svg-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -9,7 +9,8 @@
         </svg>
 
         <!-- Search Input -->
-        <input class="search-input" type="text" placeholder="Enter template name or keyword..." />
+        <input name="q" class="search-input" type="text" placeholder="Enter template name or keyword..."
+            value="{{ $keyword ?? '' }}" />
     </div>
 
     {{-- <!-- Category Select -->
@@ -28,4 +29,4 @@
     <button class="search-button">
         Search
     </button>
-</div>
+</form>

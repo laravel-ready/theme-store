@@ -50,15 +50,26 @@ class StoreController extends Controller
     /**
      * Search in the theme store
      *
-     * @param string $keyword
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function search(string $keyword)
+    public function search(Request $request)
     {
-        $themes = Theme::where('name', 'like', "%{$keyword}%")->get()->paginate();
+        $keyword = $request->route('q') ?? $request->get('q');
 
-        return view('theme-store::web.pages.store.search', compact('themes'));
+        $themes = Theme::where('name', 'like', "%{$keyword}%")->paginate(9);
+
+        if (!$themes->hasMorePages()) {
+            $request->merge(['page' => 1]);
+
+            $themes = Theme::where('name', 'like', "%{$keyword}%")->paginate(9);
+        }
+
+        return view('theme-store::web.pages.store.search', compact(
+            'themes',
+            'keyword',
+        ));
     }
 
     private function getLandingPageData()
