@@ -28,6 +28,7 @@ class CreateTsAuthorsTable extends Migration
                 $table->string('name', 50);
                 $table->string('slug', 50);
                 $table->string('contact', 50);
+                $table->string('title', 20)->nullable();
                 $table->string('avatar', 50)->nullable();
                 $table->boolean('featured')->default(false);
 

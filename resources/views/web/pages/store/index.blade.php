@@ -93,6 +93,12 @@
                 @endforeach
             </div>
         </section>
+
+        <section class="meet-the-team-container">
+            @include(
+                'theme-store::web.components.landing.meet-the-team'
+            )
+        </section>
     </main>
 @endsection
 

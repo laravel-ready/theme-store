@@ -45,7 +45,9 @@ class AuthorController extends ApiBaseController
      */
     public function store(StoreAuthorRequest $request)
     {
-        $result = Author::firstOrCreate($request->all());
+        $data = $request->except(['avatar']);
+
+        $result = Author::firstOrCreate($data);
 
         return [
             'success' => true,
@@ -103,7 +105,9 @@ class AuthorController extends ApiBaseController
      */
     public function update(UpdateAuthorRequest $request, Author $author)
     {
-        $result = $author->update($request->all());
+        $data = $request->except(['avatar']);
+
+        $result = $author->update($data);
 
         return [
             'success' => $result,

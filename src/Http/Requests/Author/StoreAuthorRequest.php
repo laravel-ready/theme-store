@@ -16,6 +16,7 @@ class StoreAuthorRequest extends ApiFormRequest
         return [
             'name' => 'required|string|min:1|max:50',
             'contact' => 'required|string|min:1|max:50',
+            'title' => 'nullable|string|min:1|max:20',
         ];
     }
 }

@@ -5,7 +5,7 @@
         <!-- Logo -->
         <a href="{{ url('/') }}">
             <h3 class="logo">
-                <img src="{{ config('theme-store.logo_path')? asset(config('theme-store.logo_path')): asset('assets/store/logos/logo.png') }}"
+                <img src="{{ config('theme-store.logo_path') ? asset(config('theme-store.logo_path')) : asset('assets/store/logos/logo.png') }}"
                     alt="Store Logo" loading="lazy">
             </h3>
         </a>
@@ -22,7 +22,8 @@
             Themes
         </a>
 
-        <a>
+        <a href="{{ route('theme-store.web.authors.index') }}"
+            class="{{ request()->routeIs('theme-store.web.authors.index') ? 'active' : '' }}">
             Developers
         </a>
 

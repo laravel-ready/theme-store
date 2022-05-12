@@ -20,19 +20,13 @@ class AuthorController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Author::select('name', 'slug', 'avatar', 'description')
+        $authors = Author::select('name', 'slug', 'avatar', 'title')
             ->orderBy('featured', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->paginate(12);
 
-        $categoriesChunk = $categories->chunk(4)
-            ->map(function ($items) {
-                return $items->values()->all();
-            });
-
-        return view('theme-store::web.pages.categories.index', compact(
-            'categories',
-            'categoriesChunk'
+        return view('theme-store::web.pages.authors.index', compact(
+            'authors',
         ));
     }
 

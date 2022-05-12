@@ -29,8 +29,8 @@ Route::name('theme-store.web.')->prefix(Config::get('theme-store.endpoints.web.p
             Route::get('{category}', [CategoryController::class, 'show'])->name('show');
         });
 
-        Route::prefix('users')->name('users.')->group(function () {
+        Route::prefix('authors')->name('authors.')->group(function () {
             Route::get('', [AuthorController::class, 'index'])->name('index');
-            Route::get('{user}', [AuthorController::class, 'show'])->name('show');
+            Route::get('{author}', [AuthorController::class, 'show'])->name('show');
         });
     });

@@ -43,7 +43,7 @@
             @isset($theme->authors[0])
                 by
 
-                <a class="author" href="{{ route('theme-store.web.users.show', $theme->authors[0]->slug) }}">
+                <a class="author" href="{{ route('theme-store.web.authors.show', $theme->authors[0]->slug) }}">
                     {{ $theme->authors[0]->name }}
                 </a>
             @endisset

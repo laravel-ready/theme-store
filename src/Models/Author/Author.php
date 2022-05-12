@@ -47,6 +47,7 @@ class Author extends Model
         'contact',
         'avatar',
         'featured',
+        'title',
     ];
 
     public function themes(): BelongsToMany

@@ -16,6 +16,7 @@ class UpdateAuthorRequest extends ApiFormRequest
         return [
             'name' => 'string|min:1|max:50',
             'contact' => 'string|min:1|max:50',
+            'title' => 'nullable|string|min:1|max:20',
         ];
     }
 }

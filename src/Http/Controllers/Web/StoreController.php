@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 use LaravelReady\ThemeStore\Traits\StoreCacheTrait;
 
 use LaravelReady\ThemeStore\Models\Theme\Theme;
+use LaravelReady\ThemeStore\Models\Author\Author;
 use LaravelReady\ThemeStore\Models\Category\Category;
 use LaravelReady\ThemeStore\Http\Controllers\Controller;
 
@@ -92,13 +93,17 @@ class StoreController extends Controller
             ->limit(6)
             ->get();
 
-
         $data['featuredCategories'] = Category::select('name', 'slug', 'image')
             ->orderBy('created_at', 'DESC')
             ->where('featured', true)
             ->limit(6)->get()
             ->chunk(3)
             ->map(fn ($items) => $items->values()->all());
+
+        $data['featuredAuthors'] = Author::select('name', 'slug', 'avatar', 'title')
+            ->orderBy('created_at', 'DESC')
+            ->where('featured', true)
+            ->limit(6)->get();
 
         $data['latestCategories'] = Category::select('name', 'slug')
             ->orderBy('created_at', 'DESC')
