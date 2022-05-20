@@ -40,6 +40,7 @@ class Theme extends Model
     protected $casts = [
         'status' => 'boolean',
         'featured' => 'boolean',
+        'is_premium' => 'boolean',
     ];
 
     protected $table = 'ts_themes';
@@ -56,6 +57,7 @@ class Theme extends Model
         'featured',
         'cover',
         'preview_link',
+        'is_premium',
     ];
 
     public function authors(): BelongsToMany

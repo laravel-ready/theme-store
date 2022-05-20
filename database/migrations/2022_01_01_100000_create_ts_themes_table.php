@@ -32,6 +32,7 @@ class CreateTsThemesTable extends Migration
                 $table->string('vendor', 50);
                 $table->string('group', 50);
                 $table->boolean('status')->default(true);
+                $table->boolean('is_premium')->default(false);
                 $table->string('cover', 50)->nullable();
                 $table->boolean('featured')->default(false);
 

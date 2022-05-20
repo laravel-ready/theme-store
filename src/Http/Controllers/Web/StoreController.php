@@ -77,7 +77,7 @@ class StoreController extends Controller
     {
         $data = [];
 
-        $data['featuredThemes'] = Theme::select('id', 'name', 'slug', 'cover')
+        $data['featuredThemes'] = Theme::select('id', 'name', 'slug', 'cover', 'is_premium')
             ->with([
                 'authors' => function ($query) {
                     return $query->select('id', 'name', 'slug')->first();

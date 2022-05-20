@@ -8,6 +8,19 @@
                 src="{{ $theme->cover ? $theme->cover : asset('/assets/store/web/images/common/default-placeholder.png') }}"
                 alt="Product Preview" loading="lazy" height="192" width="384" />
 
+            {{-- Header Bar --}}
+            <div class="header-bar">
+                @if ($theme->is_premium)
+                    <label class="premium" title="This theme is premium">
+                        Premium
+                    </label>
+                @else
+                    <label class="free" title="This theme is free">
+                        Free
+                    </label>
+                @endif
+            </div>
+
             <!-- Hover Bar -->
             <div class="hover-bar">
                 {{-- <!-- Add to Bookmarks Button -->

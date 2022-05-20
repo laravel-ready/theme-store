@@ -6,6 +6,16 @@
         <div class="details">
             <div class="title">
                 {{ $theme->name }}
+
+                @if ($theme->is_premium)
+                    <label class="orange-label">
+                        Premium
+                    </label>
+                @else
+                    <label class="blue-label">
+                        Free
+                    </label>
+                @endif
             </div>
 
             <div class="subtitle">
