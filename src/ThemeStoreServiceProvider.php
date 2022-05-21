@@ -6,10 +6,10 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Config;
 
 use LaravelReady\ThemeStore\Services\ThemeStore;
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use LaravelReady\ThemeStore\Http\Middleware\PublicStoreMiddleware;
 
-final class ThemeStoreServiceProvider extends BaseServiceProvider
+final class ThemeStoreServiceProvider extends ServiceProvider
 {
     public function boot(Router $router): void
     {
@@ -39,10 +39,12 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
      */
     private function bootPublishes(): void
     {
+        // package configs
         $this->publishes([
             __DIR__ . '/../config/theme-store.php' => $this->app->configPath('theme-store.php'),
         ], 'theme-store-config');
 
+        // migrations
         $migrationsPath = __DIR__ . '/../database/migrations/';
 
         $this->publishes([
@@ -51,20 +53,21 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
 
         $this->loadMigrationsFrom($migrationsPath);
 
+        // assets
         $assetPath = Config::get('theme-store.assets_path', 'assets/store');
 
         $this->publishes([
             __DIR__ . '/../resources/public/' => public_path($assetPath)
         ], 'theme-store-assets');
 
-
+        // views
         $this->publishes([
             __DIR__ . '/../resources/views/' => base_path('resources/views/vendor/theme-store')
         ], 'theme-store-views');
     }
 
     /**
-     * Regsiter pacakge configs
+     * Register package configs
      */
     private function registerConfigs(): void
     {
@@ -72,7 +75,7 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
     }
 
     /**
-     * Add package specific disks for image upload
+     * Add package specific disks for file upload
      */
     private function registerDisks()
     {
@@ -97,13 +100,14 @@ final class ThemeStoreServiceProvider extends BaseServiceProvider
      */
     private function loadRoutes(): void
     {
-        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api-private.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api-public.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/panel.php');
     }
 
     /**
-     * Load ThemeManagerMiddleware
+     * Load custom middlewares
      *
      * @param Router $router
      */
