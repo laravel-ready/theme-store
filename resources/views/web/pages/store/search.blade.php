@@ -14,7 +14,7 @@
         @include('theme-store::web.components.common.search-bar')
 
         {{-- Content --}}
-        <section class="container-fulid">
+        <section class="container container-fulid">
             @foreach ($themes as $theme)
                 @include('theme-store::web.components.theme.theme-card')
             @endforeach

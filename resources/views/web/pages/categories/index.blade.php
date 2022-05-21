@@ -15,7 +15,7 @@
 
     <main>
         {{-- Content --}}
-        <section class="card place-to-top">
+        <section class="card place-to-top container">
             <!-- Categories Preview -->
             <div class="p-0 categories-preview">
                 <!-- Category Cards -->
