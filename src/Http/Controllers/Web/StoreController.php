@@ -101,6 +101,8 @@ class StoreController extends Controller
             ->map(fn ($items) => $items->values()->all());
 
         $data['featuredAuthors'] = Author::select('name', 'slug', 'avatar', 'title')
+            ->withCount('themes')
+            ->orderBy('themes_count', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->where('featured', true)
             ->limit(6)->get();

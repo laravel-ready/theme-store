@@ -4,7 +4,7 @@
         <!-- Avatar -->
         <a class="avatar" href="{{ route('theme-store.web.authors.show', $author->slug) }}">
             <img src="{{ $author->avatar ?? asset('/assets/store/web/images/common/default-placeholder.png') }}"
-                height="240" width="240" loading="lazy" />
+                height="240" width="240" loading="lazy" alt="Avatar" />
         </a>
 
         <!-- Details -->

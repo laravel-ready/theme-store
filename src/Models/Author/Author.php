@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use LaravelReady\ThemeStore\Models\Theme\Download;
 use LaravelReady\ThemeStore\Models\Theme\Theme;
 
 class Author extends Model
@@ -54,7 +54,12 @@ class Author extends Model
     {
         $prefix = Config::get('theme-store.default_table_prefix', 'ts_');
 
-        return $this->belongsToMany(Theme::class, "{$prefix}_themes_authors", 'theme_id', 'author_id');
+        return $this->belongsToMany(
+            Theme::class,
+            "{$prefix}_themes_authors",
+            'author_id',
+            'theme_id'
+        );
     }
 
     public function getAvatarAttribute($value)
