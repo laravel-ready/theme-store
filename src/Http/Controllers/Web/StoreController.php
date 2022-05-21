@@ -64,7 +64,11 @@ class StoreController extends Controller
         if (!$themes->hasMorePages()) {
             $request->merge(['page' => 1]);
 
-            $themes = Theme::where('name', 'like', "%{$keyword}%")->paginate(9);
+            $themes = Theme::where('name', 'LIKE', "%{$keyword}%")
+                ->orWhere('name', 'SOUNDS LIKE', $keyword)
+                ->orderBy('featured', 'DESC')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(9);
         }
 
         return view('theme-store::web.pages.store.search', compact(
@@ -77,7 +81,7 @@ class StoreController extends Controller
     {
         $data = [];
 
-        $data['featuredThemes'] = Theme::select('id', 'name', 'slug', 'cover', 'is_premium')
+        $data['featuredThemes'] = Theme::select('id', 'name', 'slug', 'cover', 'is_premium', 'featured')
             ->with([
                 'authors' => function ($query) {
                     return $query->select('id', 'name', 'slug')->first();

@@ -15,9 +15,13 @@
 
         {{-- Content --}}
         <section class="container container-fulid">
-            @foreach ($themes as $theme)
-                @include('theme-store::web.components.theme.theme-card')
-            @endforeach
+            @if ($themes->count())
+                @foreach ($themes as $theme)
+                    @include('theme-store::web.components.theme.theme-card')
+                @endforeach
+            @else
+                No Themes Found. Please use another keyword.
+            @endif
         </section>
 
         {{-- Pagination Nav --}}
