@@ -12,7 +12,7 @@ Route::name('theme-store.web.')->prefix(Config::get('theme-store.endpoints.web.p
     ->middleware(Config::get('theme-store.endpoints.web.middleware', ['web', 'theme-store-public']))
     ->group(function () {
         Route::get('', [StoreController::class, 'index'])->name('index');
-        Route::get('search/{q?}', [StoreController::class, 'search'])->name('search');
+        Route::get('search/{q?}', [ThemeController::class, 'search'])->name('search');
 
         Route::prefix('themes')->name('themes.')->group(function () {
             Route::get('', [ThemeController::class, 'index'])->name('index');

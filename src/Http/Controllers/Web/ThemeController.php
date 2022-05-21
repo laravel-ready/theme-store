@@ -2,14 +2,12 @@
 
 namespace LaravelReady\ThemeStore\Http\Controllers\Web;
 
-use Illuminate\Support\Str;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+
 use LaravelReady\ThemeStore\Models\Theme\Theme;
 use LaravelReady\ThemeStore\Helpers\CommonHelpers;
 use LaravelReady\ThemeStore\Models\Theme\Download;
@@ -163,6 +161,14 @@ class ThemeController extends Controller
         }
     }
 
+    /**
+     * Download requested theme with token
+     *
+     * @param string $token
+     * @param Download $download
+     * @param Release $release
+     * @return DownloadToken $downloadToken
+     */
     public function downloadTheme(string $token, Download $download, Release $release, DownloadToken $downloadToken)
     {
         $token = base64_decode($token);
@@ -210,5 +216,34 @@ class ThemeController extends Controller
         return [
             'message' => 'Invalid or expired download token.',
         ];
+    }
+
+    /**
+     * Search in the theme store
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $keyword = $request->route('q') ?? $request->get('q');
+
+        $themes = Theme::where('name', 'like', "%{$keyword}%")->paginate(9);
+
+        if (!$themes->hasMorePages()) {
+            $request->merge(['page' => 1]);
+
+            $themes = Theme::where('name', 'LIKE', "%{$keyword}%")
+                ->orWhere('name', 'SOUNDS LIKE', $keyword)
+                ->orderBy('featured', 'DESC')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(9);
+        }
+
+        return view('theme-store::web.pages.store.search', compact(
+            'themes',
+            'keyword',
+        ));
     }
 }

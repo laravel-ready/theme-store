@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 
 use LaravelReady\ThemeStore\Traits\StoreCacheTrait;
-
 use LaravelReady\ThemeStore\Models\Theme\Theme;
 use LaravelReady\ThemeStore\Models\Author\Author;
 use LaravelReady\ThemeStore\Models\Category\Category;
@@ -46,35 +45,6 @@ class StoreController extends Controller
     public function show($id)
     {
         return view('theme-store::web.pages.store.theme');
-    }
-
-    /**
-     * Search in the theme store
-     *
-     * @param Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search(Request $request)
-    {
-        $keyword = $request->route('q') ?? $request->get('q');
-
-        $themes = Theme::where('name', 'like', "%{$keyword}%")->paginate(9);
-
-        if (!$themes->hasMorePages()) {
-            $request->merge(['page' => 1]);
-
-            $themes = Theme::where('name', 'LIKE', "%{$keyword}%")
-                ->orWhere('name', 'SOUNDS LIKE', $keyword)
-                ->orderBy('featured', 'DESC')
-                ->orderBy('created_at', 'DESC')
-                ->paginate(9);
-        }
-
-        return view('theme-store::web.pages.store.search', compact(
-            'themes',
-            'keyword',
-        ));
     }
 
     private function getLandingPageData()
