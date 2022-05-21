@@ -11,7 +11,7 @@
                 Themes
             </a>
 
-            <a href="#">
+            <a href="{{ route('theme-store.web.authors.index') }}">
                 Developers
             </a>
 
