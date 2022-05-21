@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use LaravelReady\ThemeStore\Traits\StoreCacheTrait;
 
 use LaravelReady\ThemeStore\Models\Author\Author;
+use LaravelReady\ThemeStore\Models\Theme\Theme;
 use LaravelReady\ThemeStore\Http\Controllers\Controller;
 
 class AuthorController extends Controller
@@ -21,7 +22,9 @@ class AuthorController extends Controller
     public function index(Request $request)
     {
         $authors = Author::select('name', 'slug', 'avatar', 'title')
+            ->withCount('themes')
             ->orderBy('featured', 'DESC')
+            ->orderBy('themes_count', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->paginate(12);
 
@@ -39,13 +42,21 @@ class AuthorController extends Controller
             'themes' => function ($query) {
                 $query->with([
                     'totalDownloads'
-                ])->select('id', 'name', 'slug', 'cover', 'is_premium')->orderBy('name', 'ASC');
-            },
+                ])
+                    ->select('id', 'name', 'slug', 'description', 'cover', 'created_at')
+                    ->orderBy('created_at', 'DESC');
+            }
         ])
             ->withCount('themes')
             ->where('slug', $slug)
             ->withTrashed()
             ->first();
+
+        $totalThemeDownload = Theme::whereIn('id', $author->themes->pluck('id'))
+            ->withCount('totalDownloads')
+            ->first();
+
+        $totalThemeDownloads = $author->themes->sum('totalDownloads.total_downloads');
 
         if ($author) {
             if ($author->trashed()) {
@@ -54,7 +65,7 @@ class AuthorController extends Controller
                 ], 404);
             }
 
-            return view('theme-store::web.pages.authors.item', compact('author'));
+            return view('theme-store::web.pages.authors.item', compact('author', 'totalThemeDownloads'));
         } else {
             return response()->view('theme-store::web.errors.404', [], 404);
         }
