@@ -9,36 +9,22 @@
 @section('content')
     {{-- Page Hero --}}
     @include('theme-store::web.components.common.hero-section', [
-        'title' => 'Categories',
+        'title' => 'Authors',
     ])
 
     <main>
-        <section class="meet-the-team-container">
-            <!-- Meet the Team -->
-            <div class="meet-the-team">
-                <!-- Section Header -->
-                <div class="section-header">
-                    <div class="class-div-4">
-                        <!-- Header -->
-                        <h1 class="header">
-                            Meet the Team
-                        </h1>
-
-                        <!-- Description -->
-                        <p>
-                            With over 100 years of combined experience, we've got a well-seasoned team at the helm.
-                        </p>
+        <section class="card place-to-top container">
+            <div class="meet-the-team-container fluid">
+                <!-- Meet the Team -->
+                <div class="meet-the-team">
+                    <div class="team-members">
+                        @foreach ($authors as $author)
+                            @include('theme-store::web.components.author.author-card')
+                        @endforeach
                     </div>
                 </div>
-
-                <div class="team-members with-title-bar">
-                    @foreach ($authors as $author)
-                        @include(
-                            'theme-store::web.components.author.author-card'
-                        )
-                    @endforeach
-                </div>
             </div>
+
         </section>
 
         {{-- Pagination Nav --}}

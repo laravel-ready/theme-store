@@ -35,7 +35,17 @@ class AuthorController extends Controller
      */
     public function show(string $slug)
     {
-        $author = Author::where('slug', $slug)->withTrashed()->first();
+        $author = Author::with([
+            'themes' => function ($query) {
+                $query->with([
+                    'totalDownloads'
+                ])->select('id', 'name', 'slug', 'cover', 'is_premium')->orderBy('name', 'ASC');
+            },
+        ])
+            ->withCount('themes')
+            ->where('slug', $slug)
+            ->withTrashed()
+            ->first();
 
         if ($author) {
             if ($author->trashed()) {

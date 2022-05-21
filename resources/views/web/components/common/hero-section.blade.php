@@ -11,7 +11,7 @@
                 [
                     'useThemeColor' => false,
                     'topLine' => false,
-                    'bottomLine' => true,
+                    'bottomLine' => $bottomLine ?? true,
                     'title' => $title,
                     // 'message' => 'the technologies we use',
                 ]
