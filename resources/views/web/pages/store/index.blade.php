@@ -35,9 +35,9 @@
 
             <!-- Links -->
             <div class="links">
-                <button class="primary-button">
+                <a href="{{ route('theme-store.web.themes.index') }}" class="primary-button">
                     Get Started
-                </button>
+                </a>
 
                 <button class="secondary-button">
                     Learn More
@@ -87,17 +87,13 @@
 
             <div class="store-card-container">
                 @foreach ($featuredThemes as $theme)
-                    @include(
-                        'theme-store::web.components.theme.theme-card'
-                    )
+                    @include('theme-store::web.components.theme.theme-card')
                 @endforeach
             </div>
         </section>
 
         <section class="meet-the-team-container">
-            @include(
-                'theme-store::web.components.landing.meet-the-team'
-            )
+            @include('theme-store::web.components.landing.meet-the-team')
         </section>
     </main>
 @endsection
